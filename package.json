@@ -2,10 +2,13 @@
   "name": "cotton_candy",
   "version": "1.0.0",
   "description": "Everyone's Blog",
-  "main": "index.js",
   "author": "Joy",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^9.0.2",
     "express": "^4.17.1"
+  },
+  "scripts": {
+    "start": "node index.js"
   }
 }
