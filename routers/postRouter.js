@@ -4,7 +4,6 @@ import routes from "../routes";
 
 const postRouter = express.Router();
 
-postRouter.get(routes.posts, posts);
 postRouter.get(routes.upload, upload);
 postRouter.get(routes.postDetail, postDetail);
 postRouter.get(routes.editPost, editPost);
