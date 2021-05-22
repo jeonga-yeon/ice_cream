@@ -1,3 +1,3 @@
-# Cotton Candy
+# Ice Cream
 
 Everyone's Blog
