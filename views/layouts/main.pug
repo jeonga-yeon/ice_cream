@@ -2,10 +2,9 @@ doctype html
 html 
     head 
         link(rel="stylesheet", href=`${process.env.HREF}`, integrity=`${process.env.INTERGRITY}`, crossorigin="anonymous")
-        title Ice Cream 
+        title #{siteName}
     body 
-        header 
-            h1 Ice Cream
+        include ../partials/header
         main 
             block content
         include ../partials/footer
