@@ -14,7 +14,7 @@
     "pug": "^3.0.2"
   },
   "scripts": {
-    "dev": "nodemon --exec babel-node src/server.js --delay 2"
+    "dev": "nodemon --exec babel-node src/init.js --delay 2"
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",

@@ -9,6 +9,7 @@ const USERS = "/users";
 const USER_DETAIL = "/:id";
 const EDIT_PROFILE = "/edit-profile";
 const CHANGE_PASSWORD = "/change-password";
+const DELETE_PROFILE = "/delete-profile";
 
 
 // Posts
@@ -27,6 +28,7 @@ const routes = {
     userDetail: USER_DETAIL,
     editProfile: EDIT_PROFILE,
     changePassword: CHANGE_PASSWORD,
+    deleteProfile: DELETE_PROFILE,
     posts: POSTS,
     upload: UPLOAD,
     postDetail: POST_DETAIL,
