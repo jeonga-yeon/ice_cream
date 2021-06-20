@@ -1,4 +1,15 @@
 extends layout.pug
+include mixins/post
+
+block header
+    nav 
+        ul 
+            li 
+                a(href="/posts/upload") Upload Video
 
 block content 
-    h1 Home
+    h2 Posts💜
+    each post in posts 
+        +post(post)
+    else 
+        li 찾을 수 없음

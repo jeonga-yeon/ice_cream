@@ -1,4 +1,7 @@
 extends layout.pug
 
 block content 
-    h1 Edit Post
+    h4 포스트 제목 수정
+    form(method="POST")
+        input(name="title", placeholder="포스트 제목", value=post.title, required)
+        input(value="저장", type="submit")

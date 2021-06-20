@@ -1,0 +1,9 @@
+extends layout.pug
+
+block header 
+    h1=pageTitle 
+
+block content 
+    form(method="POST")
+        input(type="text", placeholder="제목", required, name="title")
+        input(type="submit", value="포스트")

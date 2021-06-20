@@ -1,11 +1,11 @@
 import express from "express";
-import { postDetail, editPost, upload, deletePost } from "../controllers/postController";
+import { postDetail, deletePost, getEditPost, postEditPost, getUpload, postUpload } from "../controllers/postController";
 
 const postRouter = express.Router();
 
 postRouter.get("/:id(\\d+)", postDetail);
-postRouter.get("/:id(\\d+)/edit", editPost);
+postRouter.route("/:id(\\d+)/edit").get(getEditPost).post(postEditPost);
 postRouter.get("/:id(\\d+)/delete", deletePost);
-postRouter.get("/upload", upload);
+postRouter.route("/upload").get(getUpload).post(postUpload);
 
 export default postRouter;
