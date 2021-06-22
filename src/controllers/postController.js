@@ -1,9 +1,8 @@
 import Post from "../models/Post";
 
-export const home = (req, res) => {
-    Post.find({}, (error, posts) => {
-        return res.render("home", { pageTitle: "Ice Cream", posts});
-    });
+export const home = async (req, res) => {
+    const posts = await Post.find({});
+    return res.render("home", { pageTitle: "Ice Cream", posts});
 };
 
 export const postDetail = (req, res) => {
@@ -26,9 +25,21 @@ export const getUpload = (req, res) => {
     return res.render("upload", { pageTitle: "포스트 업로드" });
 };
 
-export const postUpload = (req, res) => {
-    const { title } = req.body;
-    return res.redirect("/");
+export const postUpload = async (req, res) => {
+    const { title, content, hashtags } = req.body;
+    try {
+        await Post.create({
+            title,
+            content,
+            hashtags: hashtags.split(" "),
+        });
+        return res.redirect("/");
+    } catch(error) {
+        return res.render("upload", { 
+            pageTitle: "포스트 업로드",
+            errorMessage: error._message,
+         });
+    }
 };
 
 export const search = (req, res) => res.send("Search");
