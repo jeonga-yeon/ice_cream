@@ -3,9 +3,9 @@ import { postDetail, deletePost, getEditPost, postEditPost, getUpload, postUploa
 
 const postRouter = express.Router();
 
-postRouter.get("/:id(\\d+)", postDetail);
-postRouter.route("/:id(\\d+)/edit").get(getEditPost).post(postEditPost);
-postRouter.get("/:id(\\d+)/delete", deletePost);
 postRouter.route("/upload").get(getUpload).post(postUpload);
+postRouter.get("/:id", postDetail);
+postRouter.route("/:id/edit").get(getEditPost).post(postEditPost);
+postRouter.get("/:id/delete", deletePost);
 
 export default postRouter;

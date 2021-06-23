@@ -5,9 +5,11 @@ export const home = async (req, res) => {
     return res.render("home", { pageTitle: "Ice Cream", posts});
 };
 
-export const postDetail = (req, res) => {
+export const postDetail = async (req, res) => {
     const { id } = req.params;
-    return res.render("post", { pageTitle: `포스트` });
+    const post = await Post.findById(id);
+    console.log(post);
+    return res.render("postdetail", { pageTitle: `포스트: ${post.title}`, post });
 };
 
 export const getEditPost = (req, res) => {

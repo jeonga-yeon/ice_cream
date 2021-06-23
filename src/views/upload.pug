@@ -7,7 +7,7 @@ block content
     if errorMessage 
         span=errorMessage
     form(method="POST")
-        input(type="text", placeholder="제목", required, name="title")
-        input(type="text", placeholder="내용", required, name="content")
+        input(type="text", placeholder="제목", required, name="title", maxlength=30)
+        input(type="text", placeholder="내용", required, name="content", maxlength=140)
         input(type="text", placeholder="해시태그", required, name="hashtags")
         input(type="submit", value="포스트")

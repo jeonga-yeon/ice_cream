@@ -2,8 +2,6 @@ mixin post(post)
     div     
         h4
             a(href=`/posts/${post.id}`)=post.title
-        ul 
-            li #{post.age}세
-            li #{post.comments}댓
-            li Posted #{post.createdAt}
-            li #{post.views} 뷰
+        p=post.content
+        small=post.creationDate
+        hr
