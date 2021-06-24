@@ -3,5 +3,8 @@ mixin post(post)
         h4
             a(href=`/posts/${post.id}`)=post.title
         p=post.content
+        ul 
+            each hashtag in post.hashtags  
+                li=hashtag
         small=post.creationDate
         hr

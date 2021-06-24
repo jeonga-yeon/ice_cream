@@ -1,25 +1,40 @@
 import Post from "../models/Post";
 
 export const home = async (req, res) => {
-    const posts = await Post.find({});
+    const posts = await Post.find({}).sort({ creationDate: "desc" });
     return res.render("home", { pageTitle: "Ice Cream", posts});
 };
 
 export const postDetail = async (req, res) => {
     const { id } = req.params;
     const post = await Post.findById(id);
-    console.log(post);
+    if(!post) {
+        return res.render("notfound", { pageTitle: "포스트를 찾을 수 없음" });
+    }
     return res.render("postdetail", { pageTitle: `포스트: ${post.title}`, post });
 };
 
-export const getEditPost = (req, res) => {
+export const getEditPost = async (req, res) => {
     const { id } = req.params;
-    return res.render("editpost", { pageTitle: `수정` });
+    const post = await Post.findById(id);
+    if(!post) {
+        return res.render("notfound", { pageTitle: "포스트를 찾을 수 없음" });
+    }
+    return res.render("editpost", { pageTitle: `수정: ${post.title}`, post });
 };
 
-export const postEditPost = (req, res) => {
+export const postEditPost = async (req, res) => {
     const { id } = req.params;
-    const { title } = req.params;
+    const { title, content, hashtags } = req.body;
+    const post = await Post.exists({ _id: id });
+    if(!post) {
+        return res.render("notfound", { pageTitle: "포스트를 찾을 수 없음" });
+    }
+    await Post.findByIdAndUpdate(id, {
+        title, 
+        content, 
+        hashtags: Post.handleHashtags(hashtags),
+    });
     return res.redirect(`/posts/${id}`);
 };
 
@@ -33,7 +48,7 @@ export const postUpload = async (req, res) => {
         await Post.create({
             title,
             content,
-            hashtags: hashtags.split(" "),
+            hashtags: Post.handleHashtags(hashtags),
         });
         return res.redirect("/");
     } catch(error) {
@@ -44,5 +59,21 @@ export const postUpload = async (req, res) => {
     }
 };
 
-export const search = (req, res) => res.send("Search");
-export const deletePost = (req, res) => res.send("Delete Post")
+export const deletePost = async (req, res) => {
+    const { id } = req.params;
+    await Post.findByIdAndDelete(id);
+    return res.redirect("/");
+}
+
+export const search = async (req, res) => {
+    const { keyword } = req.query;
+    let posts = [];
+    if(keyword) {
+        posts = await Post.find({
+            title: {
+                $regex: new RegExp(keyword, "i")
+            },
+        });
+    }
+    return res.render("search", { pageTitle: "검색", posts});
+};

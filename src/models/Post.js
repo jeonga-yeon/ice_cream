@@ -11,6 +11,10 @@ const postSchema = new mongoose.Schema({
     },
 });
 
+postSchema.static("handleHashtags", function(hashtags) {
+    return hashtags.split(" ");
+});
+
 const Post = mongoose.model("Post", postSchema);
 
 export default Post;
