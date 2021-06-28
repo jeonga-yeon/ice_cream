@@ -1,9 +1,6 @@
 extends layout
 include mixins/post
 
-block header 
-    h4=pageTitle
-
 block content 
     form(method="GET")
         input(type="text", placeholder="검색어 입력", name="keyword")

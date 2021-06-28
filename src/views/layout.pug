@@ -5,7 +5,16 @@ html(lang="ko")
         link(rel="stylesheet" href="https://unpkg.com/mvp.css")
     body
         header 
-            block header
+            nav 
+                ul 
+                    li 
+                        a(href="/") Home
+                    li 
+                        a(href="/posts/upload") 글쓰기
+                    li 
+                        a(href="/search") 검색
+                    li 
+                        a(href="/join") 회원가입
         main 
             block content
     include partials/footer
