@@ -5,21 +5,21 @@ export const postJoin = async (req, res) => {
     const { name, nickname, email, password, password2, aboutuser } = req.body;
     const pageTitle = "회원가입";
     if(password !== password2) {
-        return res.render("join", { 
+        return res.status(400).render("join", { 
             pageTitle, 
             errorMessage: "비밀번호가 일치하지 않습니다.", 
         });
     }
     const nicknameExists = await User.exists({ nickname });
     if(nicknameExists) {
-        return res.render("join", { 
+        return res.status(400).render("join", { 
             pageTitle, 
             errorMessage: "사용중인 닉네임입니다.", 
         });
     }
     const emailExists = await User.exists({ email });
     if(emailExists) {
-        return res.render("join", {
+        return res.status(400).render("join", {
             pageTitle,
             errorMessage: "사용중인 이메일입니다.",
         });

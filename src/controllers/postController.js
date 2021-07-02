@@ -18,7 +18,7 @@ export const getEditPost = async (req, res) => {
     const { id } = req.params;
     const post = await Post.findById(id);
     if(!post) {
-        return res.render("notfound", { pageTitle: "포스트를 찾을 수 없음" });
+        return res.status(404).render("notfound", { pageTitle: "포스트를 찾을 수 없음" });
     }
     return res.render("editpost", { pageTitle: `수정: ${post.title}`, post });
 };
@@ -28,7 +28,7 @@ export const postEditPost = async (req, res) => {
     const { title, content, hashtags } = req.body;
     const post = await Post.exists({ _id: id });
     if(!post) {
-        return res.render("notfound", { pageTitle: "포스트를 찾을 수 없음" });
+        return res.status(404).render("notfound", { pageTitle: "포스트를 찾을 수 없음" });
     }
     await Post.findByIdAndUpdate(id, {
         title, 
@@ -52,7 +52,7 @@ export const postUpload = async (req, res) => {
         });
         return res.redirect("/");
     } catch(error) {
-        return res.render("upload", { 
+        return res.status(400).render("upload", { 
             pageTitle: "포스트 업로드",
             errorMessage: error._message,
          });
