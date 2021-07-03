@@ -24,18 +24,40 @@ export const postJoin = async (req, res) => {
             errorMessage: "사용중인 이메일입니다.",
         });
     }
-    await User.create({
-        name, 
-        nickname,
-        email, 
-        password, 
-        aboutuser,
-    });
-    return res.redirect("/login");
+    try {
+        await User.create({
+            name, 
+            nickname,
+            email, 
+            password, 
+            aboutuser,
+        });
+        return res.redirect("/login");
+    } catch(error) {
+        return res.status(400).render("join", { 
+            pageTitle: "회원가입",
+            errorMessage: error._message,
+         });
+    }
 };
+
+export const getLogin = (req, res) => res.render("login", { pageTitle: "로그인" });
+
+export const postLogin = async (req, res) => {
+    const { email, password } = req.body;
+    const exists = await User.exists({ email });
+    if(!exists) {
+        return res
+          .status(400)
+          .render("login", { 
+              pageTitle: "로그인", 
+              errorMessage: "존재하지 않는 계정입니다." });
+    }
+    res.end();
+}
+
 export const editProfile = (req, res) => res.send("Edit Profile");
 export const remove = (req, res) => res.send("Remove User");
-export const login = (req, res) => res.send("Login");
 export const logout = (req, res) => res.send("Log out");
 export const profile = (req, res) => res.send("Profile");
 export const changePassword = (req, res) => res.send("Change Password");
