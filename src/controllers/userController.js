@@ -63,6 +63,8 @@ export const postLogin = async (req, res) => {
               pageTitle, 
               errorMessage: "패스워드가 일치하지 않습니다." });
     }
+    req.session.loggedIn = true;
+    req.session.user = user;
     return res.redirect("/");
 }
 
