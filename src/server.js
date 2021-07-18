@@ -4,6 +4,7 @@ import session from "express-session";
 import globalRouter from "./routers/globalRouter";
 import postRouter from "./routers/postRouter";
 import userRouter from "./routers/userRouter";
+import { localsMiddleware } from "./middleware";
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use((req, res, next) => {
     });
 });
 
+app.use(localsMiddleware)
 app.use("/", globalRouter);
 app.use("/posts", postRouter);
 app.use("/users", userRouter);
