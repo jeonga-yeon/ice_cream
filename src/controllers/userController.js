@@ -68,8 +68,11 @@ export const postLogin = async (req, res) => {
     return res.redirect("/");
 }
 
+export const logout = (req, res) => {
+    req.session.destroy();
+    return res.redirect("/");
+}
+
 export const editProfile = (req, res) => res.send("Edit Profile");
-export const remove = (req, res) => res.send("Remove User");
-export const logout = (req, res) => res.send("Log out");
 export const profile = (req, res) => res.send("Profile");
 export const changePassword = (req, res) => res.send("Change Password");
