@@ -66,13 +66,49 @@ export const postLogin = async (req, res) => {
     req.session.loggedIn = true;
     req.session.user = user;
     return res.redirect("/");
-}
+};
 
 export const logout = (req, res) => {
     req.session.destroy();
     return res.redirect("/");
+};
+
+export const getEditProfile = (req, res) => {
+    return res.render("editprofile", { pageTitle: "프로필 수정" });
+};
+
+export const postEditProfile = async (req, res) => {
+    const { 
+        session: {
+            user: { _id },
+        },
+        body: { name, nickname, aboutuser },
+    } = req;
+    const updatedUser = await User.findByIdAndUpdate(_id, {
+            name,
+            nickname,
+            aboutuser,
+        },
+        { new: true },
+    );
+    req.session.user = updatedUser;
+    return res.redirect("/users/edit-profile");
+};
+
+export const getChangePassword = (req, res) => {
+    if (req.session.user.socialOnly === true) {
+      return res.redirect("/");
+    }
+    return res.render("users/change-password", { pageTitle: "Change Password" });
+  };
+
+export const postChangePassword = (req, res) => {
+    const {
+        session: {
+          user: { _id },
+        },
+        body: { oldPassword, newPassword, confirmation },
+      } = req;
+      return res.redirect("/");
 }
 
-export const editProfile = (req, res) => res.send("Edit Profile");
-export const profile = (req, res) => res.send("Profile");
-export const changePassword = (req, res) => res.send("Change Password");

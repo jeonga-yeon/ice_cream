@@ -10,14 +10,16 @@ html(lang="ko")
                     li 
                         a(href="/") Home
                     li 
-                        a(href="/posts/upload") 글쓰기
-                    li 
                         a(href="/search") 검색
                     if loggedIn 
+                        li 
+                            a(href="/posts/upload") 포스트 작성
                         li 
                             a(href="/my-profile") #{loggedInUser.nickname}의 프로필
                         li 
                             a(href="/users/logout") 로그아웃
+                        li 
+                            a(href="/users/edit-profile") 프로필 수정
                     else 
                         li 
                             a(href="/login") 로그인

@@ -1,0 +1,10 @@
+extends layout
+
+block content   
+    form(method="POST")
+        input(name="name", type="text", required, placeholder="이름", value=loggedInUser.name)
+        input(name="nickname", type="text", required, placeholder="닉네임", value=loggedInUser.nickname)
+        input(name="aboutuser", type="text", required, placeholder="자기소개", value=loggedInUser.aboutuser)
+        input(type="submit", value="수정")
+        hr
+        a(href="change-password") 비밀번호 변경
