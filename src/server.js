@@ -25,7 +25,8 @@ app.use(
     })
 );
 
-app.use(localsMiddleware)
+app.use(localsMiddleware);
+app.use("/uploads", express.static("uploads"));
 app.use("/", globalRouter);
 app.use("/posts", postRouter);
 app.use("/users", userRouter);

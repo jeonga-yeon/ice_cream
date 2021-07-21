@@ -80,11 +80,13 @@ export const getEditProfile = (req, res) => {
 export const postEditProfile = async (req, res) => {
     const { 
         session: {
-            user: { _id },
+            user: { _id, avatarUrl },
         },
         body: { name, nickname, aboutuser },
+        file,
     } = req;
     const updatedUser = await User.findByIdAndUpdate(_id, {
+            avatarUrl: file ? file.path : avatarUrl,
             name,
             nickname,
             aboutuser,
@@ -99,16 +101,33 @@ export const getChangePassword = (req, res) => {
     if (req.session.user.socialOnly === true) {
       return res.redirect("/");
     }
-    return res.render("users/change-password", { pageTitle: "Change Password" });
+    return res.render("changepassword", { pageTitle: "비밀번호 변경" });
   };
 
-export const postChangePassword = (req, res) => {
+export const postChangePassword = async (req, res) => {
     const {
         session: {
           user: { _id },
         },
         body: { oldPassword, newPassword, confirmation },
       } = req;
-      return res.redirect("/");
+      const user = await User.findById(_id);
+      const ok = await bcrypt.compare(oldPassword, user.password);
+      if(!ok) {
+        return res.status(400).render("changepassword", {
+            pageTitle: "비밀번호 변경",
+            errorMessage: "현재 비밀번호가 일치하지 않습니다.",
+        });
+      }
+      if(newPassword !== confirmation) {
+          return res.status(400).render("changepassword", {
+              pageTitle: "비밀번호 변경",
+              errorMessage: "새로운 비밀번호가 일치하지 않습니다.",
+          });
+      }
+      user.password = newPassword;
+      await user.save();
+      return res.redirect("/users/logout");
 }
 
+export const profile = (req, res) => res.send("Profile");
