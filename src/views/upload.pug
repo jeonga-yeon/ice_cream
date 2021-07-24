@@ -3,7 +3,7 @@ extends layout.pug
 block content 
     if errorMessage 
         span=errorMessage
-    form(method="POST")
+    form(method="POST", enctype="multipart/form-data")
         label(for="video") 영상
         input(type="file", accept="video/*", required, id="video", name="video")
         input(type="text", placeholder="제목", required, name="title", maxlength=30)

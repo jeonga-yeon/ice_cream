@@ -2,6 +2,7 @@ extends layout.pug
 
 block content 
     h2=post.title
+    video(src="/" + post.fileUrl, controls)
     div 
         p=post.content 
         small=post.creationDate

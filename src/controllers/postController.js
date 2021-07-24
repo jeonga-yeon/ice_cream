@@ -43,11 +43,13 @@ export const getUpload = (req, res) => {
 };
 
 export const postUpload = async (req, res) => {
+    const { path: fileUrl } = req.file;
     const { title, content, hashtags } = req.body;
     try {
         await Post.create({
             title,
             content,
+            fileUrl,
             hashtags: Post.handleHashtags(hashtags),
         });
         return res.redirect("/");
