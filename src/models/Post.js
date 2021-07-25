@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const postSchema = new mongoose.Schema({
     title: { type: String, required: true, maxLength:30, trim: true },
-    fileUrl: { type: String, required: true },
+    fileUrl: [String],
     content: { type: String, required: true, maxLength: 140, trim: true },
     creationDate: { type: Date, default: Date.now, required: true },
     hashtags: [{ type: String, trim: true }],
