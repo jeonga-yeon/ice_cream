@@ -7,7 +7,7 @@ block content
         ul 
             each url in post.fileUrl  
                 li
-                    img(src="/" + url)
+                    img(src=url)
         p=post.content 
         small=post.creationDate
     a(href=`${post.id}/edit`) 포스트 수정
