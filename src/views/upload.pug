@@ -4,11 +4,12 @@ block content
     if errorMessage 
         span=errorMessage
     form(method="POST", enctype="multipart/form-data")
-        label(for="video") 영상
-        input(type="file", accept="video/*", id="video", name="post")
-        label(for="image") 사진
-        input(type="file", accept="image/*", id="image", name="post")
         input(type="text", placeholder="제목", required, name="title", maxlength=30)
-        input(type="text", placeholder="내용", required, name="content", maxlength=140)
         input(type="text", placeholder="해시태그", required, name="hashtags")
+        label(for="video") 영상
+        input(type="file", accept="video/*", id="video", name="post", multiple)
+        label(for="image") 사진
+        input(type="file", accept="image/*", id="image", name="post", multiple)
+        div(class="image")
+        textarea(id="content", name="content", cols="117", rows="100", placeholder="내용을 입력하세요", required, maxlength=500) 
         input(type="submit", value="포스트")

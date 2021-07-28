@@ -43,8 +43,12 @@ export const getUpload = (req, res) => {
 };
 
 export const postUpload = async (req, res) => {
-    const { path:fileUrl } = req.files;
+    const { files } = req;
     const { title, content, hashtags } = req.body;
+    let fileUrl = new Array();
+    for(let i = 0; i < files.length; i++) {
+        fileUrl.push(`/${files[i].path}`)
+    }
     try {
         await Post.create({
             title,
