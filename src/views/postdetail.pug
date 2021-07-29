@@ -2,12 +2,16 @@ extends layout.pug
 
 block content 
     h2=post.title
-    video(src="/" + post.fileUrl, controls)
     div 
         ul 
-            each url in post.fileUrl  
+            each videoUrl in post.videosUrl  
                 li
-                    img(src=url)
+                    video(src=videoUrl, controls)
+    div 
+        ul 
+            each imageUrl in post.imagesUrl 
+                li
+                    img(src=imageUrl)
         p=post.content 
         small=post.creationDate
     a(href=`${post.id}/edit`) 포스트 수정

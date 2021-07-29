@@ -4,7 +4,10 @@ import { postUploadMiddleware, protectorMiddleware } from "../middleware";
 
 const postRouter = express.Router();
 
-postRouter.route("/upload").all(protectorMiddleware).get(getUpload).post(postUploadMiddleware.array("post", 30), postUpload);
+postRouter.route("/upload").all(protectorMiddleware)
+    .get(getUpload)
+    .post(postUploadMiddleware
+    .fields([{ name: "videos", maxCount: 5 }, { name: 'images', maxCount: 20 }]), postUpload);
 postRouter.get("/:id", postDetail);
 postRouter.route("/:id/edit").all(protectorMiddleware).get(getEditPost).post(postEditPost);
 postRouter.route("/:id/delete").all(protectorMiddleware).get(deletePost);

@@ -43,17 +43,23 @@ export const getUpload = (req, res) => {
 };
 
 export const postUpload = async (req, res) => {
-    const { files } = req;
+    const videoFiles = req.files["videos"];
+    const imageFiles = req.files["images"];
     const { title, content, hashtags } = req.body;
-    let fileUrl = new Array();
-    for(let i = 0; i < files.length; i++) {
-        fileUrl.push(`/${files[i].path}`)
+    let videosUrl = [];
+    for(let i = 0; i < videoFiles.length; i++) {
+        videosUrl.push(`/${videoFiles[i].path}`)
+    }
+    let imagesUrl = [];
+    for(let i = 0; i < imageFiles.length; i++) {
+        imagesUrl.push(`/${imageFiles[i].path}`)
     }
     try {
         await Post.create({
             title,
             content,
-            fileUrl,
+            videosUrl,
+            imagesUrl,
             hashtags: Post.handleHashtags(hashtags),
         });
         return res.redirect("/");
