@@ -1,5 +1,8 @@
 extends layout.pug 
 
+block link
+    link(rel="stylesheet", href="/src/write.css")
+
 block content 
     if errorMessage 
         span=errorMessage
@@ -7,9 +10,15 @@ block content
         input(type="text", placeholder="제목", required, name="title", maxlength=30)
         input(type="text", placeholder="해시태그", required, name="hashtags")
         label(for="video") 영상
-        input(type="file", accept="video/*", id="video", name="videos", multiple)
+        input(type="file", accept="video/*", id="video", name="videos", multiple, onchange="handleFiles(this.files)")
         label(for="image") 사진
-        input(type="file", accept="image/*", id="image", name="images", multiple)
+        input(type="file", accept="image/*", id="image", name="images", multiple, onchange="handleFiles(this.files)")
+        label(for="anyfiles") 파일 첨부
+        input(type="file", id="anyfiles", name="anyfiles", multiple, onchange="handleFiles(this.files)")
         div(class="image")
         textarea(id="content", name="content", cols="117", rows="100", required, maxlength=500) 
+            ul(id="files-view", class="hidden")           
         input(type="submit", value="포스트")
+
+block script 
+    script(src="/src/write.js")
