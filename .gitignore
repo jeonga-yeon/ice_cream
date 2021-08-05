@@ -120,5 +120,4 @@ dist
 package-lock.json
 
 /uploads
-/assets/css
 /assets
