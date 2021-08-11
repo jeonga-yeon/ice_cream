@@ -1,40 +1,57 @@
-const fileView = document.querySelector("#file-view");
-let newFiles = [];
+const image = document.querySelector("#image");
+const video = document.querySelector("#video");
+const anyfiles = document.querySelector("#anyfiles");
+const write = document.querySelector("#write");
+const attachedFiles = document.querySelector("#attachedfiles ul");
 
-if(newFiles) {
-    fileView.classList.remove("hidden");
+image.addEventListener("change", handleImageFiles, false);
+video.addEventListener("change", handleVideoFiles, false);
+anyfiles.addEventListener("change", handleFiles, false);
+
+function handleImageFiles() {
+    const files = this.files;
+    for(let i = 0; i < files.length; i++) {
+        const file = files[i];
+
+        if (!file.type.startsWith('image/')){ continue }
+
+        const img = document.createElement("img");
+        img.classList.add("obj");
+        img.file = file;
+        write.appendChild(img); // "preview"가 결과를 보여줄 div 출력이라 가정.
+
+        const reader = new FileReader();
+        reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
+        reader.readAsDataURL(file);
+    }
 }
 
-for (let i = 0, numFiles = files.length; i < numFiles; i++) {
-    const file = files[i];
-    const newFileObj = {
-        filename: file.name,
-        filetype: file.type,
-        id: Date.now(),
-    };
-    newFiles.push(newFileObj);
-    paintToDo(newFileObj);
-    // 파일 저장
+function handleVideoFiles() {
+    const files = this.files;
+    for(let i = 0; i < files.length; i++) {
+        const file = files[i];
+
+        if (!file.type.startsWith('video/')){ continue }
+
+        const video = document.createElement("video");
+        video.classList.add("obj");
+        video.file = file;
+        write.appendChild(video);
+
+        const reader = new FileReader();
+        reader.onload = (function(aVideo) { return function(e) { aVideo.src = e.target.result; }; })(video);
+        reader.readAsDataURL(file);
+    }
 }
 
-function deleteFile(event) {
-    const li = event.target.parentElement;
-    li.remove();
-    newFiles = newFiles.filter(newFile => newFile.id !== parseInt(li.id));
-    // 파일 저장
-}
-
-function paintFiles(newFileObj) {
-    const li = document.createElement("li");
-    li.id = newFileObj.id;
-    const spanfilename = document.createElement("span");
-    span.innerText = newFileObj.filename;
-    const spanfiletype = document.createElement("span");
-    span.innerText = newFileObj.filetype;
-    const button = document.createElement("button");
-    button.innerText = "❌";
-    button.addEventListener("click", deleteFile);
-    li.appendChild(spanfilename);
-    li.appendChild(spanfiletype);
-    fileView.appendChild(li);
+function handleFiles() {
+    const files = this.files;
+    for(let i = 0; i < files.length; i++) {
+        const filename = files[i].name;
+        const li = document.createElement("li");
+        const span = document.createElement("span");
+        span.innerText(filename);
+        li.appendChild(span);
+        attachedFiles.appendChild(li);
+    }
 }
