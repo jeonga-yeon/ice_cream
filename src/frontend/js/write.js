@@ -4,6 +4,8 @@ const anyfiles = document.querySelector("#anyfiles");
 const write = document.querySelector("#write");
 const attachedFiles = document.querySelector("#attachedfiles ul");
 
+let attached = [];
+
 image.addEventListener("change", handleImageFiles, false);
 video.addEventListener("change", handleVideoFiles, false);
 anyfiles.addEventListener("change", handleFiles, false);
@@ -44,14 +46,37 @@ function handleVideoFiles() {
     }
 }
 
+function deleteFile(event) {
+    const li = event.target.parentElement;
+    li.remove();
+    attached = attached.filter(file => file.id !== parseInt(li.id));
+    // 저장
+}
+
+function showFiles(fileObj) {
+    const li = document.createElement("li");
+    const filename = document.createElement("span");
+    const button = document.createElement("button");
+    filename.classList.add("obj");
+    filename.innerText = fileObj.name;
+    button.innerText = "x";
+    button.addEventListener("click", deleteFile);
+    li.appendChild(filename);
+    li.appendChild(button);
+    attachedFiles.appendChild(li);
+}
+
 function handleFiles() {
     const files = this.files;
     for(let i = 0; i < files.length; i++) {
-        const filename = files[i].name;
-        const li = document.createElement("li");
-        const span = document.createElement("span");
-        span.innerText(filename);
-        li.appendChild(span);
-        attachedFiles.appendChild(li);
+        const file = files[i];
+        const filename = file.name;
+        const fileObj = {
+            name: filename,
+            id: Date.now(),
+        }
+        attached.push(fileObj);
+        showFiles(fileObj);
+        // 저장
     }
 }
