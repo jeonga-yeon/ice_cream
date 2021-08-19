@@ -43,23 +43,23 @@ export const getUpload = (req, res) => {
 };
 
 export const postUpload = async (req, res) => {
-    const videoFiles = req.files["videos"];
-    const imageFiles = req.files["images"];
+    //const videoFiles = req.files["videos"];
+    //const imageFiles = req.files["images"];
     const { title, content, hashtags } = req.body;
-    let videosUrl = [];
-    for(let i = 0; i < videoFiles.length; i++) {
+    /* let videosUrl = [];
+     for(let i = 0; i < videoFiles.length; i++) {
         videosUrl.push(`/${videoFiles[i].path}`)
     }
     let imagesUrl = [];
     for(let i = 0; i < imageFiles.length; i++) {
         imagesUrl.push(`/${imageFiles[i].path}`)
-    }
+    } */
     try {
         await Post.create({
             title,
             content,
-            videosUrl,
-            imagesUrl,
+            //videosUrl,
+            //imagesUrl,
             hashtags: Post.handleHashtags(hashtags),
         });
         return res.redirect("/");
@@ -71,11 +71,6 @@ export const postUpload = async (req, res) => {
     }
 };
 
-export const deletePost = async (req, res) => {
-    const { id } = req.params;
-    await Post.findByIdAndDelete(id);
-    return res.redirect("/");
-}
 
 export const search = async (req, res) => {
     const { keyword } = req.query;

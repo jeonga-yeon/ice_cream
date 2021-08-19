@@ -2,6 +2,7 @@ const image = document.querySelector("#image");
 const video = document.querySelector("#video");
 const anyfiles = document.querySelector("#anyfiles");
 const write = document.querySelector("#write");
+const content = document.querySelector("#write").innerHTML;
 const attachedFiles = document.querySelector("#attachedfiles ul");
 
 let attached = [];
@@ -20,7 +21,7 @@ function handleImageFiles() {
         const img = document.createElement("img");
         img.classList.add("obj");
         img.file = file;
-        write.appendChild(img); // "preview"가 결과를 보여줄 div 출력이라 가정.
+        write.appendChild(img);
 
         const reader = new FileReader();
         reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
