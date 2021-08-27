@@ -3,7 +3,7 @@ extends layout.pug
 block content 
     if errorMessage 
         span=errorMessage
-    form(method="POST", enctype="multipart/form-data")
+    form(method="POST", enctype="multipart/form-data", onsubmit="return getContents(event)")
         input(type="text", placeholder="제목", required, name="title", maxlength=30)
         input(type="text", placeholder="해시태그", required, name="hashtags")
         label(for="image") 사진
@@ -12,9 +12,8 @@ block content
         input(type="file", accept="video/*", id="video", name="videos", multiple)
         label(for="anyfiles") 파일 첨부
         input(type="file", id="anyfiles", name="anyfiles", multiple)
-        div(id="write", contenteditable="true", name="content")
-        div(id="attachedfiles")
-            ul 
+        div(id="write", contenteditable="true")
+        textarea(id="text", style="display:none", name="content")
         input(type="submit", value="포스트")
 
 block script 
