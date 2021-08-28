@@ -1,4 +1,5 @@
 import Post from "../models/Post";
+import JSDOM from "jsdom";
 
 export const home = async (req, res) => {
     const posts = await Post.find({}).sort({ creationDate: "desc" });
@@ -46,6 +47,7 @@ export const postUpload = async (req, res) => {
     //const videoFiles = req.files["videos"];
     //const imageFiles = req.files["images"];
     const { title, hashtags, content } = req.body;
+    
     /* let videosUrl = [];
      for(let i = 0; i < videoFiles.length; i++) {
         videosUrl.push(`/${videoFiles[i].path}`)

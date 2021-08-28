@@ -3,11 +3,6 @@ const video = document.querySelector("#video");
 const anyfiles = document.querySelector("#anyfiles");
 const write = document.querySelector("#write");
 const attachedFiles = document.querySelector("#attachedfiles ul");
-const content = document.querySelector("#text");
-
-function getContents(event){
-    content.value = write.innerText;
-}
 
 let attached = [];
 
