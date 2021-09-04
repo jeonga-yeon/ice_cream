@@ -12,8 +12,8 @@ block content
             each imageUrl in post.imagesUrl 
                 li
                     img(src=imageUrl)
-        p=post.content 
-        small=post.creationDate
+    div=post.content 
+    small=post.creationDate
     a(href=`${post.id}/edit`) 포스트 수정
     br
     a(href=`${post.id}/delete`) 포스트 삭제

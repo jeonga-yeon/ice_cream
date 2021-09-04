@@ -2,6 +2,7 @@ const image = document.querySelector("#image");
 const video = document.querySelector("#video");
 const anyfiles = document.querySelector("#anyfiles");
 const write = document.querySelector("#write");
+const content = document.querySelector("#content");
 const attachedFiles = document.querySelector("#attachedfiles ul");
 
 let attached = [];
