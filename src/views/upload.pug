@@ -21,5 +21,6 @@ block script
     script(type="text/javascript").
         function getContent() {
             document.querySelector("#content").value =
-            document.querySelector("#write").innerHTML;
+            document.querySelector("#write").innerHTML.replace("<", "")
+                                                      .replace(">", "");
         }
