@@ -3,23 +3,13 @@ extends layout.pug
 block content 
     if errorMessage 
         span=errorMessage
-    form(method="POST", enctype="multipart/form-data", onsubmit="getContent();")
+    form(method="POST", enctype="multipart/form-data")
         input(type="text", placeholder="제목", required, name="title", maxlength=30)
         input(type="text", placeholder="해시태그", required, name="hashtags")
-        label(for="image") 사진
-        input(type="file", accept="image/*", id="image", name="images", multiple)
         label(for="video") 영상
         input(type="file", accept="video/*", id="video", name="videos", multiple)
-        label(for="anyfiles") 파일 첨부
-        input(type="file", id="anyfiles", name="anyfiles", multiple)
-        textarea(id="content", style="display:none", name="content")
+        label(for="image") 사진
+        input(type="file", accept="image/*", id="image", name="images", multiple)
+        div(class="image")
+        textarea(id="content", name="content", cols="117", rows="100", required, maxlength=500) 
         input(type="submit", value="포스트")
-    div(id="write", contenteditable="true")
-
-block script 
-    script(src="/assets/js/write.js")
-    script(type="text/javascript").
-        function getContent() {
-            document.querySelector("#content").value =
-            document.querySelector("#write").innerHTML;
-        }
