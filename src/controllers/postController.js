@@ -47,12 +47,16 @@ export const postUpload = async (req, res) => {
     const imageFiles = req.files["images"];
     const { title, content, hashtags } = req.body;
     let videosUrl = [];
-    for(let i = 0; i < videoFiles.length; i++) {
-        videosUrl.push(`/${videoFiles[i].path}`)
-    }
     let imagesUrl = [];
-    for(let i = 0; i < imageFiles.length; i++) {
-        imagesUrl.push(`/${imageFiles[i].path}`)
+    if(videoFiles) {
+        for(let i = 0; i < videoFiles.length; i++) {
+            videosUrl.push(`/${videoFiles[i].path}`)
+        }
+    }
+    if(imageFiles) {
+        for(let i = 0; i < imageFiles.length; i++) {
+            imagesUrl.push(`/${imageFiles[i].path}`)
+        }
     }
     try {
         await Post.create({
