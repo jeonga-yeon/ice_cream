@@ -1,19 +1,31 @@
 extends layout.pug
 
+block link
+    link(rel="stylesheet", href="/assets/css/post.css")
+
 block content 
     h2=post.title
-    div 
-        ul 
-            each videoUrl in post.videosUrl  
-                li
-                    video(src=videoUrl, controls)
-    div 
-        ul 
-            each imageUrl in post.imagesUrl 
-                li
-                    img(src=imageUrl)
+    div(id="container") 
+        div(class="content")
+            div(class="content_box")
+                div(clss="content_list clearfix")
+                    ul(class="hidden") 
+                        each videoUrl in post.videosUrl  
+                            li
+                                video(class="video", src=videoUrl, controls) 
+                    ul(class="hidden")
+                        each imageUrl in post.imagesUrl 
+                            li
+                                img(class="image", src=imageUrl)
+    div(class="btn")
+        button(type="button", class="btn_prev") <
+        button(type="button", class="btn_next") >
+    ul(class="order")
     p=post.content 
     small=post.creationDate
     a(href=`${post.id}/edit`) 포스트 수정
     br
     a(href=`${post.id}/delete`) 포스트 삭제
+
+block script 
+    script(src="/assets/js/post.js")
