@@ -1,19 +1,65 @@
 const container = document.querySelector(".container");
 const slide = document.querySelectorAll(".slide");
-const btnWrap = document.querySelector(".btn_wrap");
+const images = document.querySelectorAll("img");
+const videos = document.querySelectorAll("video");
 
-function paintDot() {
-    for(let i = 0; i < slide.length; i++) {
-        const dot = document.createElement("i");
-        dot.className = "fas fa-circle dot";
-        dot.id = i;
-        btnWrap.appendChild(dot);
+console.log(videos);
+
+function imgResizing () {
+    for(let i = 0; i < images.length; i++) {
+        const width = images[i].width;
+        const height = images[i].height;
+
+        const MAX_WIDTH = 600;
+        const MAX_HEIGHT = 600;
+
+        if (width > height) {
+            if (width > MAX_WIDTH) {
+                height *= MAX_WIDTH / width;
+                width = MAX_WIDTH;
+            }
+        } else {
+            if (height > MAX_HEIGHT) {
+                width *= MAX_HEIGHT / height;
+                height = MAX_HEIGHT;
+            }
+        }
+
+        images[i].width = width;
+        images[i].height = height;
     }
-    dot.addEventListener("click", function() {
-        
-    });
+}
+
+function videoResizing() {
+    for(let i = 0; i < videos.length; i++) {
+        const width = videos[i].videoWidth;
+        const height = videos[i].videoHeight;
+
+        const MAX_WIDTH = 600;
+        const MAX_HEIGHT = 600;
+
+        if (width > height) {
+            if (width > MAX_WIDTH) {
+                height *= MAX_WIDTH / width;
+                width = MAX_WIDTH;
+            }
+        } else {
+            if (height > MAX_HEIGHT) {
+                width *= MAX_HEIGHT / height;
+                height = MAX_HEIGHT;
+            }
+        }
+
+        videos[i].videoWidth = width;
+        videos[i].videoHeight = height;
+    }
 }
 
 if(slide) {
-    paintDot();
+    if(images) {
+        imgResizing();
+    }
+    if(videos) {
+        videoResizing();
+    }
 }

@@ -10,7 +10,6 @@ block content
             each imageUrl in post.imagesUrl 
                 div(class="slide")
                     img(src=imageUrl)
-        div(class="btn_wrap")
     p=post.content 
     small=post.creationDate
     a(href=`${post.id}/edit`) 포스트 수정

@@ -3,15 +3,9 @@ body {
   .box {
     overflow: hidden;
     .container {
-      width: 300vw;
       transition: transform 0.5s;
       .slide {
-        width: 100vw;
         float: left;
-        video,
-        img {
-          width: 100%;
-        }
       }
     }
   }
