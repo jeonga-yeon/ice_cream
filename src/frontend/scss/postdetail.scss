@@ -4,8 +4,14 @@ body {
     overflow: hidden;
     .container {
       transition: transform 0.5s;
+      width: 1500px;
+      height: 700px;
       .slide {
         float: left;
+        video {
+          max-width: 1400px;
+          max-height: 600px;
+        }
       }
     }
   }
