@@ -1,4 +1,5 @@
 const container = document.querySelector(".container");
+const slideWrap = document.querySelector(".slide_wrap");
 const slide = document.querySelector(".slide");
 const images = document.querySelectorAll("img");
 const videos = document.querySelectorAll("video");
@@ -7,25 +8,33 @@ let position = 0;
 
 function clickPrev(files, prev, next) {
     if(curPosition > 0) {
-        next.removeAttribute("disabled");
-        position += files[0][curPosition].width;
-        files[0][curPosition].style.transform = `translateX(${position}px)`;
+        next.removeAttribute("disabled", true);
+        position += files[0][curPosition-1].width;
+        container.style.width = files[0][curPosition - 1].width + 'px';
+        slideWrap.style.width = files[0][curPosition - 1].width + 'px';
+        for(let i = 0; i <= files.length; i++) {
+            files[0][i].style.transform = `translateX(${position}px)`;
+        }
         curPosition = curPosition - 1;
     }
     if(curPosition == 0) {
-        prev.setAttribute("disabled", "true");
+        prev.setAttribute("disabled", true);
     }
 }
 
 function clickNext(files, prev, next) {
     if(curPosition < files[0].length) {
-        prev.removeAttribute("disabled");
+        prev.removeAttribute("disabled", true);
         position -= files[0][curPosition].width;
-        files[0][curPosition].style.transform = `translateX(${position}px)`;
+        container.style.width = files[0][curPosition + 1].width + 'px';
+        slideWrap.style.width = files[0][curPosition + 1].width + 'px';
+        for(let i = 0; i <= files.length; i++) {
+            files[0][i].style.transform = `translateX(${position}px)`;
+        }
         curPosition = curPosition + 1;
     }
     if(curPosition == files[0].length) {
-        next.setAttribute("disabled", "true");
+        next.setAttribute("disabled", true);
     }
 }
 
@@ -36,10 +45,6 @@ function paintBtn() {
     next.className = "fas fa-chevron-right button next";
     container.appendChild(prev);
     container.appendChild(next);
-}
-
-function showSlides() {
-    
 }
 
 function imgResizing () {
@@ -75,6 +80,7 @@ if(slide) {
             const imgs = document.querySelectorAll("img");
             const allVideos = document.querySelectorAll("video");
             const files = [];
+
             if(imgs) {
                 files.push(imgs);
             }
@@ -82,11 +88,12 @@ if(slide) {
                 files.push(allVideos);
             }
 
+            container.style.width = files[0][0].width + 'px';
+            slideWrap.style.width = files[0][0].width + 'px';
+
             const prev = document.querySelector("i.prev");
             const next = document.querySelector("i.next");
-
-            showSlides(files);
-
+            
             prev.addEventListener("click", function() {clickPrev(files, prev, next)});
             next.addEventListener("click", function() {clickNext(files, prev, next)});
         }

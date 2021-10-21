@@ -2,14 +2,13 @@ extends layout.pug
 
 block content 
     h2=post.title
-    div(class="box")
-        div(class="container")  
-            div(class="slide_wrap")
-                div(class="slide")
-                    each imageUrl in post.imagesUrl 
-                        img(src=imageUrl)
-                    each videoUrl in post.videosUrl  
-                        video(src=videoUrl, controls) 
+    div(class="container")  
+        div(class="slide_wrap")
+            div(class="slide")
+                each imageUrl in post.imagesUrl 
+                    img(src=imageUrl)
+                each videoUrl in post.videosUrl  
+                    video(src=videoUrl, controls) 
     p=post.content 
     small=post.creationDate
     a(href=`${post.id}/edit`) 포스트 수정

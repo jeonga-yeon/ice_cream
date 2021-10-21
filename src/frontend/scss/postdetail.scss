@@ -1,40 +1,37 @@
 body {
   margin: 0;
-  .box {
-    overflow: hidden;
-    .container {
-      width: 1500px;
-      transition: transform 0.5s;
-      margin: 0 auto;
-      .slide_wrap {
+  .container {
+    transition: transform 0.5s;
+    margin: 0 auto;
+    .slide_wrap {
+      height: 700px;
+      overflow: hidden;
+      .slide {
+        position: relative;
+        display: flex;
         height: 700px;
-        .slide {
-          position: relative;
-          display: flex;
-          height: 700px;
-          video {
-            max-width: 1400px;
-            max-height: 600px;
-          }
+        video {
+          width: 1000px;
+          height: 600px;
         }
       }
-      .button,
-      .button:active,
-      .button:focus {
-        color: #ffdbdb;
-      }
-      .button:hover {
-        color: #fa5882;
-      }
-      .button:disabled {
-        color: gray;
-      }
-      .prev {
-        float: left;
-      }
-      .next {
-        float: right;
-      }
+    }
+    .button,
+    .button:active,
+    .button:focus {
+      color: #ffdbdb;
+    }
+    .button:hover {
+      color: #fa5882;
+    }
+    .button:disabled {
+      color: gray;
+    }
+    .prev {
+      float: left;
+    }
+    .next {
+      float: right;
     }
   }
 }
