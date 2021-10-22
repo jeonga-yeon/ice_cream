@@ -6,9 +6,9 @@ block content
         div(class="slide_wrap")
             div(class="slide")
                 each imageUrl in post.imagesUrl 
-                    img(src=imageUrl)
+                    img(src=imageUrl, class="img")
                 each videoUrl in post.videosUrl  
-                    video(src=videoUrl, controls) 
+                    video(src=videoUrl, class="video", controls) 
     p=post.content 
     small=post.creationDate
     a(href=`${post.id}/edit`) 포스트 수정

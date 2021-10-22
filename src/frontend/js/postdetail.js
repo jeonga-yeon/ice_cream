@@ -23,17 +23,30 @@ function clickPrev(files, prev, next) {
 }
 
 function clickNext(files, prev, next) {
-    if(curPosition < files[0].length) {
+    if(curPosition < files.length) {
         prev.removeAttribute("disabled", true);
-        position -= files[0][curPosition].width;
-        container.style.width = files[0][curPosition + 1].width + 'px';
-        slideWrap.style.width = files[0][curPosition + 1].width + 'px';
-        for(let i = 0; i <= files.length; i++) {
-            files[0][i].style.transform = `translateX(${position}px)`;
+        if(files[curPosition].className === "img") {
+            position -= files[curPosition].width;
+        } else {
+            position -= files[curPosition].clientWidth;
+        }
+        if(files[curPosition + 1].className === "img") {
+            container.style.width = files[curPosition + 1].width + 'px';
+            slideWrap.style.width = files[curPosition + 1].width + 'px';
+        } else {
+            container.style.width = files[curPosition + 1].clientWidth + 'px';
+            slideWrap.style.width = files[curPosition + 1].clientWidth + 'px';
+        }
+        for(let i = 0; i < files.length; i++) {
+            if(files[i].className === "img") {
+                files[i].style.transform = `translateX(${position}px)`;
+            } else {
+                files[i].style.transform = `translateX(${position}px)`;
+            }
         }
         curPosition = curPosition + 1;
     }
-    if(curPosition == files[0].length) {
+    if(curPosition == files.length) {
         next.setAttribute("disabled", true);
     }
 }
@@ -79,17 +92,26 @@ if(slide) {
 
             const imgs = document.querySelectorAll("img");
             const allVideos = document.querySelectorAll("video");
-            const files = [];
+            let files = [];
 
             if(imgs) {
-                files.push(imgs);
+                for(let i = 0; i < imgs.length; i++) {
+                    files.push(imgs[i]);
+                }
             }
             if(allVideos) {
-                files.push(allVideos);
+                for(let i = 0; i < allVideos.length; i++) {
+                    files.push(allVideos[i]);
+                }
             }
 
-            container.style.width = files[0][0].width + 'px';
-            slideWrap.style.width = files[0][0].width + 'px';
+            if(files[0].className === "img") {
+                container.style.width = files[0].width + 'px';
+                slideWrap.style.width = files[0].width + 'px';
+            } else {
+                container.style.width = files[0].clientWidth + 'px';
+                slideWrap.style.width = files[0].clientWidth + 'px';
+            }
 
             const prev = document.querySelector("i.prev");
             const next = document.querySelector("i.next");
