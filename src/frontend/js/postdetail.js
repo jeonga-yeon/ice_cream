@@ -79,7 +79,9 @@ if(slide) {
     if(images || videos) {
         window.onload = function () {
             imgResizing();
-            paintBtn();
+            if(images.length + videos.length !== 1) {
+                paintBtn();
+            }
 
             const imgs = document.querySelectorAll("img");
             const allVideos = document.querySelectorAll("video");
