@@ -32,7 +32,7 @@ function clickPrev(files, prev, next) {
 }
 
 function clickNext(files, prev, next) {
-    if(curPosition < files.length) {
+    if(curPosition < files.length - 1) {
         prev.classList.remove("stop");
         if(files[curPosition].className === "img") {
             position -= files[curPosition].width;
