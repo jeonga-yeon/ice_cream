@@ -1,18 +1,19 @@
 body {
   margin: 0;
   .container {
+    visibility: hidden;
     transition: transform 0.5s;
     margin: 0 auto;
     .slide_wrap {
-      height: 700px;
+      height: 500px;
       overflow: hidden;
       .slide {
         position: relative;
         display: flex;
-        height: 700px;
+        height: 500px;
         video {
-          width: 1000px;
-          height: 600px;
+          max-height: 500px;
+          width: auto;
         }
       }
     }
