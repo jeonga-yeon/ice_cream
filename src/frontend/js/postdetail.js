@@ -8,7 +8,7 @@ let position = 0;
 
 function clickPrev(files, prev, next) {
     if(curPosition > 0) {
-        next.removeAttribute("disabled", true);
+        next.classList.remove("stop");
         if(files[curPosition].className === "img") {
             position += files[curPosition-1].width;
         } else {
@@ -27,13 +27,13 @@ function clickPrev(files, prev, next) {
         curPosition = curPosition - 1;
     }
     if(curPosition == 0) {
-        prev.setAttribute("disabled", true);
+        prev.classList.add("stop");
     }
 }
 
 function clickNext(files, prev, next) {
     if(curPosition < files.length) {
-        prev.removeAttribute("disabled", true);
+        prev.classList.remove("stop");
         if(files[curPosition].className === "img") {
             position -= files[curPosition].width;
         } else {
@@ -51,18 +51,21 @@ function clickNext(files, prev, next) {
         }
         curPosition = curPosition + 1;
     }
-    if(curPosition == files.length) {
-        next.setAttribute("disabled", true);
+    if(curPosition == files.length - 1) {
+        next.classList.add("stop");
     }
 }
 
 function paintBtn() {
+    const buttonWrap = document.createElement("div");
+    buttonWrap.className = "button_wrap";
     const prev = document.createElement("i");
     prev.className = "fas fa-chevron-left button prev";
     const next = document.createElement("i");
     next.className = "fas fa-chevron-right button next";
-    container.appendChild(prev);
-    container.appendChild(next);
+    container.appendChild(buttonWrap);
+    buttonWrap.appendChild(prev);
+    buttonWrap.appendChild(next);
 }
 
 function imgResizing () {
@@ -105,6 +108,8 @@ if(slide) {
 
             const prev = document.querySelector("i.prev");
             const next = document.querySelector("i.next");
+
+            prev.classList.add("stop");
             
             prev.addEventListener("click", function() {clickPrev(files, prev, next)});
             next.addEventListener("click", function() {clickNext(files, prev, next)});

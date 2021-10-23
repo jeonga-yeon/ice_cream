@@ -17,22 +17,29 @@ body {
         }
       }
     }
-    .button,
-    .button:active,
-    .button:focus {
-      color: #ffdbdb;
-    }
-    .button:hover {
-      color: #fa5882;
-    }
-    .button:disabled {
-      color: gray;
-    }
-    .prev {
-      float: left;
-    }
-    .next {
-      float: right;
+    .button_wrap {
+      width: 50px;
+      margin: auto;
+      .button,
+      .button:active,
+      .button:focus {
+        color: #ffdbdb;
+        margin: auto;
+        transform: translateY(10px);
+      }
+      .button:hover {
+        color: #fa5882;
+      }
+      .prev {
+        float: left;
+      }
+      .next {
+        float: right;
+      }
+      .stop,
+      .stop:hover {
+        color: gray;
+      }
     }
   }
 }
