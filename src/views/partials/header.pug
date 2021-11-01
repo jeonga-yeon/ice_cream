@@ -9,7 +9,7 @@ header
                 li 
                     a(href="/posts/upload") 포스트 작성
                 li 
-                    a(href="/my-profile") #{loggedInUser.nickname}의 프로필
+                    a(href=`/users/${loggedInUser._id}`) 내 프로필
                 li 
                     a(href="/users/logout") 로그아웃
                 li 
