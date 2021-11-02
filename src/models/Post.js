@@ -11,6 +11,7 @@ const postSchema = new mongoose.Schema({
      views: { type: Number, default: 0, required: true },
      like: { type: Number, default: 0, required: true },
     },
+    owner: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" },
 });
 
 postSchema.static("handleHashtags", function(hashtags) {

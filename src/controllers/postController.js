@@ -1,4 +1,5 @@
 import Post from "../models/Post";
+import User from "../models/User";
 
 export const home = async (req, res) => {
     const posts = await Post.find({}).sort({ creationDate: "desc" });
@@ -7,7 +8,7 @@ export const home = async (req, res) => {
 
 export const postDetail = async (req, res) => {
     const { id } = req.params;
-    const post = await Post.findById(id);
+    const post = await Post.findById(id).populate("owner");
     if(!post) {
         return res.render("notfound", { pageTitle: "포스트를 찾을 수 없음" });
     }
@@ -43,6 +44,9 @@ export const getUpload = (req, res) => {
 };
 
 export const postUpload = async (req, res) => {
+    const { 
+        user: { _id },
+     } = req.session;
     const videoFiles = req.files["videos"];
     const imageFiles = req.files["images"];
     const { title, content, hashtags } = req.body;
@@ -64,6 +68,7 @@ export const postUpload = async (req, res) => {
             content,
             videosUrl,
             imagesUrl,
+            owner: _id,
             hashtags: Post.handleHashtags(hashtags),
         });
         return res.redirect("/");

@@ -9,11 +9,17 @@ block content
                     img(src=imageUrl, class="img")
                 each videoUrl in post.videosUrl  
                     video(src=videoUrl, class="video", controls) 
-    p=post.content 
-    small=post.creationDate
-    a(href=`${post.id}/edit`) 포스트 수정
-    br
-    a(href=`${post.id}/delete`) 포스트 삭제
+    div 
+        p=post.content 
+        small=post.creationDate
+    div 
+        small
+            a(href=`/users/${post.owner._id}`)=post.owner.nickname
+            span 님이 업로드한 포스트
+    if String(post.owner._id) === String(loggedInUser._id)
+        a(href=`${post.id}/edit`) 포스트 수정
+        br
+        a(href=`${post.id}/delete`) 포스트 삭제
 
 block script 
     script(src="/assets/js/postdetail.js")
