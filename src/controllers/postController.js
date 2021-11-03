@@ -17,19 +17,27 @@ export const postDetail = async (req, res) => {
 
 export const getEditPost = async (req, res) => {
     const { id } = req.params;
+    const { user: {_id} } = req.session;
     const post = await Post.findById(id);
     if(!post) {
         return res.status(404).render("notfound", { pageTitle: "포스트를 찾을 수 없음" });
+    }
+    if(String(post.owner) !== String(_id)) {
+        return res.status(403).redirect("/");
     }
     return res.render("editpost", { pageTitle: `수정: ${post.title}`, post });
 };
 
 export const postEditPost = async (req, res) => {
+    const { user: {_id} } = req.session;
     const { id } = req.params;
     const { title, content, hashtags } = req.body;
     const post = await Post.exists({ _id: id });
     if(!post) {
         return res.status(404).render("notfound", { pageTitle: "포스트를 찾을 수 없음" });
+    }
+    if(String(post.owner) !== String(_id)) {
+        return res.status(403).redirect("/");
     }
     await Post.findByIdAndUpdate(id, {
         title, 
@@ -85,6 +93,14 @@ export const postUpload = async (req, res) => {
 
 export const deletePost = async (req, res) => {
     const { id } = req.params;
+    const { user: {_id} } = req.session;
+    const post = await Post.findById(id);
+    if(!post) {
+        return res.status(404).render("notfound", { pageTitle: "포스트를 찾을 수 없음" });
+    }
+    if(String(post.owner) !== String(_id)) {
+        return res.status(403).redirect("/");
+    }
     await Post.findByIdAndDelete(id);
     return res.redirect("/");
 }
