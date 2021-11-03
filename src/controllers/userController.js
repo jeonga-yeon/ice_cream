@@ -1,4 +1,5 @@
 import User from "../models/User";
+import Post from "../models/Post";
 import bcrypt from "bcrypt";
 
 export const getJoin = (req, res) => res.render("Join", { pageTitle: "회원가입" });
@@ -132,9 +133,12 @@ export const postChangePassword = async (req, res) => {
 
 export const profile = async (req, res) => {
     const { id } = req.params;
-    const user = await User.findById(id);
+    const user = await User.findById(id).populate("posts");
     if(!user) {
         return res.status(404).render("notfound", { pageTitle: "찾을 수 없음" });
     }
-    return res.render("profile", { pageTitle: `${user.nickname}의 프로필`, user });
-}
+    return res.render("profile", { 
+        pageTitle: `${user.nickname}의 프로필`, 
+        user, 
+    });
+};

@@ -1,4 +1,8 @@
 extends layout
+include mixins/post
 
 block content 
-    h1 #{user.nickname}의 프로필
+    each post in user.posts 
+        +post(post)
+    else 
+        span 작성한 포스트가 없습니다.

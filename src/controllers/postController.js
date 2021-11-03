@@ -63,7 +63,7 @@ export const postUpload = async (req, res) => {
         }
     }
     try {
-        await Post.create({
+        const newPost = await Post.create({
             title,
             content,
             videosUrl,
@@ -71,6 +71,9 @@ export const postUpload = async (req, res) => {
             owner: _id,
             hashtags: Post.handleHashtags(hashtags),
         });
+        const user = await User.findById(_id);
+        user.posts.push(newPost._id);
+        user.save();
         return res.redirect("/");
     } catch(error) {
         return res.status(400).render("upload", { 
