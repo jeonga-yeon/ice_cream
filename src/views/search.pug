@@ -2,7 +2,7 @@ extends layout
 include mixins/post
 
 block content 
-    form(method="GET")
+    form(method="GET", class="search__form")
         input(type="text", placeholder="검색어 입력", name="keyword")
         input(type="submit", value="OK")
 

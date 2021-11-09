@@ -1,10 +1,11 @@
 header 
-    a(href="/")
+    a(href="/", class="header__logo")
         i.fab.fa-ice-cream
     nav 
         ul 
             li 
-                a(href="/search") 검색
+                a(href="/search")
+                    i.fas.fa-search
             if loggedIn 
                 li 
                     a(href="/posts/upload") 포스트 작성
@@ -18,4 +19,4 @@ header
                 li 
                     a(href="/login") 로그인
                 li 
-                    a(href="/join") 회원가입
+                    a(href="/join", class="header__join") 회원가입

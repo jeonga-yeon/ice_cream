@@ -2,7 +2,11 @@ extends layout
 include mixins/post
 
 block content 
-    each post in user.posts 
-        +post(post)
-    else 
-        span 작성한 포스트가 없습니다.
+    div.profile__data
+        img(src="/" + user.avatarUrl).avatar
+        h3=user.nickname
+    div.video-grid
+        each post in user.posts
+            +post(post)
+        else
+            span.empty__message 작성한 포스트가 없습니다.
