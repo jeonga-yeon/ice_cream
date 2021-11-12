@@ -16,6 +16,8 @@ block content
         small
             a(href=`/users/${post.owner._id}`)=post.owner.nickname
             span 님이 업로드한 포스트
+            br
+            span 조회수 #{post.meta.views}
     if String(post.owner._id) === String(loggedInUser._id)
         a(href=`${post.id}/edit`) 포스트 수정
         br

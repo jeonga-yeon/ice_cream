@@ -12,6 +12,8 @@ export const postDetail = async (req, res) => {
     if(!post) {
         return res.render("notfound", { pageTitle: "포스트를 찾을 수 없음" });
     }
+    post.meta.views = post.meta.views + 1;
+    await post.save();
     return res.render("postdetail", { pageTitle: `포스트: ${post.title}`, post });
 };
 
