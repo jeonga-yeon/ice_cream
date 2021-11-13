@@ -8,7 +8,7 @@ const postSchema = new mongoose.Schema({
     creationDate: { type: Date, default: Date.now, required: true },
     hashtags: [{ type: String, trim: true }],
     meta: {
-     views: { type: Number, default: -1, required: true },
+     views: { type: Number, default: 0, required: true },
      like: { type: Number, default: 0, required: true },
     },
     owner: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" },

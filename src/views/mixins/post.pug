@@ -1,10 +1,7 @@
 mixin post(post)
-    div     
-        h4
-            a(href=`/posts/${post.id}`)=post.title
-        p=post.content
-        ul 
-            each hashtag in post.hashtags  
-                li=hashtag
-        small=post.creationDate
-        hr
+    a(href=`/posts/${post.id}`).post-mixin
+        .post-mixin__data 
+            span.post-mixin__title=post.title 
+            .post-mixin__meta 
+                span 작성자 #{post.owner.nickname} • 
+                span 조회수 #{post.meta.views}

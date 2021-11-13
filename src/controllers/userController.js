@@ -1,5 +1,4 @@
 import User from "../models/User";
-import Post from "../models/Post";
 import bcrypt from "bcrypt";
 
 export const getJoin = (req, res) => res.render("Join", { pageTitle: "회원가입" });

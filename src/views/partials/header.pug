@@ -1,6 +1,6 @@
 header 
-    a(href="/", class="header__logo")
-        i.fab.fa-ice-cream
+    a(href="/")
+        i.fas.fa-ice-cream.fa-2x
     nav 
         ul 
             li 
@@ -10,11 +10,15 @@ header
                 li 
                     a(href="/posts/upload") 포스트 작성
                 li 
-                    a(href=`/users/${loggedInUser._id}`) 내 프로필
-                li 
                     a(href="/users/logout") 로그아웃
                 li 
                     a(href="/users/edit-profile") 프로필 수정
+                li 
+                    a(href=`/users/${loggedInUser._id}`)
+                        if loggedInUser.avatarUrl === undefined
+                            i.fas.fa-user-circle
+                        else
+                            img.header__avatar(src="/" + loggedInUser.avatarUrl)
             else 
                 li 
                     a(href="/login") 로그인

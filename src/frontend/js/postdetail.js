@@ -75,19 +75,19 @@ function imgResizing () {
     }  
 }
 
-if(slide) {
-    if(images || videos) {
-        window.onload = function () {
+window.onload = function () {
+    if(slide) {
+        if(images || videos) {
             setTimeout(function() {
                 imgResizing();
                 if(images.length + videos.length !== 1) {
                     paintBtn();
                 }
-    
+        
                 const imgs = document.querySelectorAll("img");
                 const allVideos = document.querySelectorAll("video");
                 let files = [];
-    
+        
                 if(imgs) {
                     for(let i = 0; i < imgs.length; i++) {
                         files.push(imgs[i]);
@@ -98,7 +98,7 @@ if(slide) {
                         files.push(allVideos[i]);
                     }
                 }
-    
+        
                 if(files[0].className === "img") {
                     container.style.width = files[0].width + 'px';
                     slideWrap.style.width = files[0].width + 'px';
@@ -106,12 +106,12 @@ if(slide) {
                     container.style.width = files[0].clientWidth + 'px';
                     slideWrap.style.width = files[0].clientWidth + 'px';
                 }
-    
+        
                 container.style.visibility = "visible";
-    
+        
                 const prev = document.querySelector("i.prev");
                 const next = document.querySelector("i.next");
-
+        
                 if(images.length + videos.length !== 1) {
                     prev.classList.add("stop");
                     prev.addEventListener("click", function() {clickPrev(files, prev, next)});

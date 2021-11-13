@@ -3,9 +3,12 @@ include mixins/post
 
 block content 
     div.profile__data
-        img(src="/" + user.avatarUrl).avatar
+        if user.avatarUrl === undefined
+            i.fas.fa-user-circle.fa-5x
+        else 
+            img(src="/" + user.avatarUrl).avatar
         h3=user.nickname
-    div.video-grid
+    div
         each post in user.posts
             +post(post)
         else

@@ -1,0 +1,14 @@
+.post-mixin {
+  .post-mixin__data {
+    padding: 0px 15px;
+    .post-mixin__title {
+      font-size: 18px;
+      display: block;
+      margin-top: 10px;
+    }
+    .post-mixin__meta {
+      margin-top: 5px;
+      font-size: 12px;
+    }
+  }
+}

@@ -2,7 +2,7 @@ import Post from "../models/Post";
 import User from "../models/User";
 
 export const home = async (req, res) => {
-    const posts = await Post.find({}).sort({ creationDate: "desc" });
+    const posts = await Post.find({}).sort({ creationDate: "desc" }).populate("owner");
     return res.render("home", { pageTitle: "Ice Cream", posts});
 };
 
@@ -115,7 +115,7 @@ export const search = async (req, res) => {
             title: {
                 $regex: new RegExp(keyword, "i")
             },
-        });
+        }).populate("owner");
     }
     return res.render("search", { pageTitle: "검색", posts});
 };

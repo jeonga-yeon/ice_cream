@@ -7,9 +7,13 @@
 @import "./components/footer.scss";
 @import "./components/form.scss";
 @import "./components/shared.scss";
+@import "./components/post.scss";
 
 // screens
-@import "./postdetail.scss";
+@import "./screens/postdetail.scss";
+@import "./screens/edit-profile.scss";
+@import "./screens/profile.scss";
+@import "./screens/search.scss";
 
 // defaults
 body {

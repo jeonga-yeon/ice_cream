@@ -4,8 +4,11 @@ include mixins/post
 block content 
     form(method="GET", class="search__form")
         input(type="text", placeholder="검색어 입력", name="keyword")
-        input(type="submit", value="OK")
+        button
+            i.fas.fa-search
 
     div 
         each post in posts 
             +post(post)
+        else 
+            span.not_found 포스트를 찾을 수 없습니다.
