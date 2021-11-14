@@ -1,7 +1,7 @@
 const container = document.querySelector(".container");
 const slideWrap = document.querySelector(".slide_wrap");
 const slide = document.querySelector(".slide");
-const images = document.querySelectorAll("img");
+const images = document.querySelectorAll(".image");
 const videos = document.querySelectorAll("video");
 let curPosition = 0;
 let position = 0;
@@ -9,12 +9,12 @@ let position = 0;
 function clickPrev(files, prev, next) {
     if(curPosition > 0) {
         next.classList.remove("stop");
-        if(files[curPosition].className === "img") {
+        if(files[curPosition].className === "image") {
             position += files[curPosition-1].width;
         } else {
             position += files[curPosition-1].clientWidth;
         }
-        if(files[curPosition - 1].className === "img") {
+        if(files[curPosition - 1].className === "image") {
             container.style.width = files[curPosition - 1].width + 'px';
             slideWrap.style.width = files[curPosition - 1].width + 'px';
         } else {
@@ -34,12 +34,12 @@ function clickPrev(files, prev, next) {
 function clickNext(files, prev, next) {
     if(curPosition < files.length - 1) {
         prev.classList.remove("stop");
-        if(files[curPosition].className === "img") {
+        if(files[curPosition].className === "image") {
             position -= files[curPosition].width;
         } else {
             position -= files[curPosition].clientWidth;
         }
-        if(files[curPosition + 1].className === "img") {
+        if(files[curPosition + 1].className === "image") {
             container.style.width = files[curPosition + 1].width + 'px';
             slideWrap.style.width = files[curPosition + 1].width + 'px';
         } else {
@@ -84,7 +84,7 @@ window.onload = function () {
                     paintBtn();
                 }
         
-                const imgs = document.querySelectorAll("img");
+                const imgs = document.querySelectorAll(".image");
                 const allVideos = document.querySelectorAll("video");
                 let files = [];
         
@@ -99,7 +99,7 @@ window.onload = function () {
                     }
                 }
         
-                if(files[0].className === "img") {
+                if(files[0].className === "image") {
                     container.style.width = files[0].width + 'px';
                     slideWrap.style.width = files[0].width + 'px';
                 } else {
