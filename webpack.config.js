@@ -5,6 +5,7 @@ module.exports = {
     entry: {
         main: "./src/frontend/js/main.js",
         postdetail: "./src/frontend/js/postdetail.js",
+        search: "./src/frontend/js/search.js",
     },
     mode: "development",
     watch: true,
