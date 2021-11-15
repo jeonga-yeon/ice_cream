@@ -5,12 +5,12 @@ body {
     transition: transform 0.5s;
     margin: 0 auto;
     .slide_wrap {
-      height: 500px;
+      height: 450px;
       overflow: hidden;
       .slide {
         position: relative;
         display: flex;
-        height: 500px;
+        height: 450px;
       }
     }
     .button_wrap {
@@ -38,5 +38,9 @@ body {
         color: gray;
       }
     }
+  }
+  span.hashtag {
+    color: skyblue;
+    margin-left: 5px;
   }
 }

@@ -116,6 +116,13 @@ export const search = async (req, res) => {
                 $regex: new RegExp(keyword, "i")
             },
         }).populate("owner");
+        if(posts.length === 0) {
+            posts = await Post.find({
+                hashtags: {
+                    $regex: new RegExp(keyword, "i")
+                },
+            }).populate("owner");
+        }
     }
     return res.render("search", { pageTitle: "검색", posts});
 };

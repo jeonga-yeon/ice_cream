@@ -11,13 +11,17 @@ block content
                     video(src=videoUrl, class="video", controls) 
     div 
         p=post.content 
+        each hashtag in post.hashtags 
+            a(href=`/search?keyword=` + hashtag.replace('#', '%23'))
+                span.hashtag=hashtag
+        br
         small=post.creationDate
     div 
         small
             a(href=`/users/${post.owner._id}`)=post.owner.nickname
             span 님이 업로드한 포스트
             br
-            span 조회수 #{post.meta.views}
+            span 조회수 #{post.meta.views - 1}
     if String(post.owner._id) === String(loggedInUser._id)
         a(href=`${post.id}/edit`) 포스트 수정
         br

@@ -70,7 +70,7 @@ function paintBtn() {
 
 function imgResizing () {
     for(let i = 0; i < images.length; i++) {
-        images[i].style.maxHeight = 500;
+        images[i].style.maxHeight = 450;
         images[i].style.width = "auto";
     }  
 }
