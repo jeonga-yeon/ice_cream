@@ -21,6 +21,12 @@ body {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background-color: white;
   color: black;
+  main {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 50px;
+  }
   a {
     color: pink;
     text-decoration: none;

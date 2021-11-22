@@ -8,8 +8,14 @@ block content
         else 
             img(src="/" + user.avatarUrl).avatar
         h3=user.nickname
-    div
+    .components 
+        .my__posts 
+            span 내 포스트
+        .my_comments
+            span 내 댓글
+    .components__posts
         each post in user.posts
             +post(post)
         else
             span.empty__message 작성한 포스트가 없습니다.
+    .components__comments
