@@ -59,4 +59,7 @@ body {
     color: skyblue;
     margin-left: 5px;
   }
+  .no__click {
+    pointer-events: none;
+  }
 }

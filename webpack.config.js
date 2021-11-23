@@ -6,6 +6,7 @@ module.exports = {
         main: "./src/frontend/js/main.js",
         postdetail: "./src/frontend/js/postdetail.js",
         search: "./src/frontend/js/search.js",
+        comment: "./src/frontend/js/comment.js",
     },
     mode: "development",
     watch: true,

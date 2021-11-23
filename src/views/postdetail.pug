@@ -5,9 +5,9 @@ block content
         i.far.fa-bookmark
     .post__title
         h2=post.title
-    div(class="container")  
-        div(class="slide_wrap")
-            div(class="slide")
+    .container(data-id=post._id)
+        .slide_wrap
+            .slide
                 each imageUrl in post.imagesUrl 
                     img(src=imageUrl, class="image")
                 each videoUrl in post.videosUrl  
@@ -29,6 +29,18 @@ block content
         a(href=`${post.id}/edit`) 포스트 수정
         br
         a(href=`${post.id}/delete`) 포스트 삭제
+    if loggedIn
+        .post__comments 
+            form.post__comment-form#commentForm
+                textarea(class="loggedin__textarea", cols="30", rows="10", placeholder="댓글을 입력하세요...")
+                button 등록
+    else 
+        .post__comments 
+            form.post__comment-form#commentForm
+                textarea(readonly, cols="30", rows="10", placeholder="로그인 해주세요...")
+                button(class="no__click") 등록
+
 
 block script 
     script(src="/assets/js/postdetail.js")
+    script(src="/assets/js/comment.js")

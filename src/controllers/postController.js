@@ -126,3 +126,9 @@ export const search = async (req, res) => {
     }
     return res.render("search", { pageTitle: "검색", posts});
 };
+
+export const createComment = (req, res) => {
+    console.log(req.params);
+    console.log(req.body.text);
+    return res.end();
+}
