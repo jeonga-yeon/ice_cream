@@ -35,10 +35,16 @@ block content
                 textarea(class="loggedin__textarea", cols="30", rows="10", placeholder="댓글을 입력하세요...")
                 button 등록
     else 
-        .post__comments 
+        .post__add-comments 
             form.post__comment-form#commentForm
                 textarea(readonly, cols="30", rows="10", placeholder="로그인 해주세요...")
                 button(class="no__click") 등록
+    .post__comments 
+        ul 
+            each comment in post.comments.reverse()
+                li.post__comment(data-id=comment.id)
+                    span 💛 #{comment.text} 
+                    span 삭제
 
 
 block script 

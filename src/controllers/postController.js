@@ -1,5 +1,6 @@
 import Post from "../models/Post";
 import User from "../models/User";
+import Comment from "../models/Comment";
 
 export const home = async (req, res) => {
     const posts = await Post.find({}).sort({ creationDate: "desc" }).populate("owner");
@@ -8,7 +9,7 @@ export const home = async (req, res) => {
 
 export const postDetail = async (req, res) => {
     const { id } = req.params;
-    const post = await Post.findById(id).populate("owner");
+    const post = await Post.findById(id).populate("owner").populate("comments");
     if(!post) {
         return res.render("notfound", { pageTitle: "포스트를 찾을 수 없음" });
     }
@@ -127,8 +128,31 @@ export const search = async (req, res) => {
     return res.render("search", { pageTitle: "검색", posts});
 };
 
-export const createComment = (req, res) => {
-    console.log(req.params);
-    console.log(req.body.text);
-    return res.end();
+export const createComment = async (req, res) => {
+    const {
+        session: { user },
+        body: { text },
+        params: { id },
+    } = req;
+    
+    const post = await Post.findById(id);
+
+    if(!post) {
+        return res.sendStatus(404);
+    }
+
+    const comment = await Comment.create({
+        text,
+        owner: user._id,
+        post: id,
+    });
+
+    post.comments.push(comment._id);
+    post.save();
+
+
+
+    return res.status(201).json({
+        newCommentId: comment._id
+    });
 }

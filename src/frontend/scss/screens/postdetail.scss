@@ -63,3 +63,19 @@ body {
     pointer-events: none;
   }
 }
+
+.post__comments {
+  display: flex;
+  flex-direction: column;
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 20px;
+  .post__comment {
+    padding: 10px;
+    border-radius: 9999px;
+    background-color: white;
+    color: black;
+    margin-bottom: 10px;
+  }
+}
