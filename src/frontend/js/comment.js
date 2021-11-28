@@ -14,6 +14,7 @@ const addComment = (text, id) => {
     const deleteSpan = document.createElement("span");
     deleteSpan.className = "delete__comment";
     deleteSpan.innerText = "삭제";
+    deleteSpan.addEventListener("click", deleteCommentBtn);
     newComment.appendChild(span);
     newComment.appendChild(deleteSpan);
     postComments.prepend(newComment);
@@ -43,10 +44,12 @@ const handleSubmit = async (event) => {
 const deleteCommentBtn = async (event) => {
     const li = event.target.parentElement;
     const commentId = li.dataset.id;
-    li.remove();
-    await fetch(`/api/comments/${commentId}`, {
+    const response = await fetch(`/api/comments/${commentId}`, {
         method: "DELETE"
     });
+    if(response.status === 200) {
+        li.remove();
+    }
 };
     
 form.addEventListener("submit", handleSubmit);
