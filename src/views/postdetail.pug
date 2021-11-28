@@ -44,7 +44,8 @@ block content
             each comment in post.comments.reverse()
                 li.post__comment(data-id=comment.id)
                     span 💛 #{comment.text} 
-                    span 삭제
+                    if String(comment.owner._id) === String(loggedInUser._id)
+                        span(class="delete__comment") 삭제
 
 
 block script 

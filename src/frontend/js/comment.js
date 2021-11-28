@@ -2,6 +2,7 @@ const container = document.querySelector(".container");
 const form = document.getElementById("commentForm");
 const loggedinTextarea = form.querySelector(".loggedin__textarea");
 const button = form.querySelector("button");
+const deleteComments = document.querySelectorAll(".delete__comment");
 
 const addComment = (text, id) => {
     const postComments = document.querySelector(".post__comments ul");
@@ -11,6 +12,7 @@ const addComment = (text, id) => {
     const span = document.createElement("span");
     span.innerText = `💛 ${text} `;
     const deleteSpan = document.createElement("span");
+    deleteSpan.className = "delete__comment";
     deleteSpan.innerText = "삭제";
     newComment.appendChild(span);
     newComment.appendChild(deleteSpan);
@@ -37,5 +39,18 @@ const handleSubmit = async (event) => {
         loggedinTextarea.value = "";
     }
 };
+
+const deleteCommentBtn = async (event) => {
+    const li = event.target.parentElement;
+    const commentId = li.dataset.id;
+    li.remove();
+    await fetch(`/api/comments/${commentId}`, {
+        method: "DELETE"
+    });
+};
     
 form.addEventListener("submit", handleSubmit);
+
+for(let i = 0; i < deleteComments.length; i++) {
+    deleteComments[i].addEventListener("click", deleteCommentBtn);
+}
