@@ -161,12 +161,9 @@ export const deleteComment = async (req, res) => {
     const { id } = req.params;
     const { user: {_id} } = req.session;
     const comment = await Comment.findById(id);
-    if(!comment) {
-        return res.status(404).render("notfound", { pageTitle: "포스트를 찾을 수 없음" });
-    }
     if(String(comment.owner) !== String(_id)) {
-        return res.status(403).redirect("/");
+        return res.sendStatus(404);
     }
     await Comment.findByIdAndDelete(id);
-    return res.redirect("/");
+    return res.sendStatus(201);
 };

@@ -44,12 +44,10 @@ const handleSubmit = async (event) => {
 const deleteCommentBtn = async (event) => {
     const li = event.target.parentElement;
     const commentId = li.dataset.id;
-    const response = await fetch(`/api/comments/${commentId}`, {
+    await fetch(`/api/comments/${commentId}`, {
         method: "DELETE"
     });
-    if(response.status === 200) {
-        li.remove();
-    }
+    li.remove();
 };
     
 form.addEventListener("submit", handleSubmit);
