@@ -136,8 +136,13 @@ export const createComment = async (req, res) => {
     } = req;
     
     const post = await Post.findById(id);
+    const thisUser = await User.findById(user._id);
 
     if(!post) {
+        return res.sendStatus(404);
+    }
+
+    if(!thisUser) {
         return res.sendStatus(404);
     }
 
@@ -149,8 +154,8 @@ export const createComment = async (req, res) => {
 
     post.comments.push(comment._id);
     post.save();
-
-
+    thisUser.comments.push(comment._id);
+    thisUser.save();
 
     return res.status(201).json({
         newCommentId: comment._id
