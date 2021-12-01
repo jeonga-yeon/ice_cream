@@ -1,0 +1,4 @@
+mixin comment(comment)
+    a(href=`/posts/${comment.post}`).comment-mixin
+        .comment-mixin__data
+            span.comment-mixin__content=comment.text

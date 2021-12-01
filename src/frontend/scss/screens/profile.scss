@@ -26,8 +26,9 @@
       display: table-cell;
       vertical-align: middle;
     }
+    cursor: pointer;
   }
-  .my_comments {
+  .my__comments {
     float: right;
     width: 50%;
     height: 40px;
@@ -37,11 +38,28 @@
       display: table-cell;
       vertical-align: middle;
     }
+    cursor: pointer;
   }
 }
 
-.components__posts {
-  a {
-    color: black;
+.components__wrap {
+  position: relative;
+  height: 500px;
+  width: 100%;
+  .components__posts {
+    position: absolute;
+    height: 500px;
+    width: 100%;
+    z-index: 2;
+    a {
+      color: black;
+    }
+  }
+  .components__comments {
+    position: absolute;
+    height: 500px;
+    width: 100%;
+    z-index: 1;
+    visibility: hidden;
   }
 }

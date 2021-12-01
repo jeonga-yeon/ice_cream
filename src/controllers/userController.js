@@ -132,7 +132,7 @@ export const postChangePassword = async (req, res) => {
 
 export const profile = async (req, res) => {
     const { id } = req.params;
-    const user = await User.findById(id).populate("posts");
+    const user = await User.findById(id).populate("posts").populate("comments");
     if(!user) {
         return res.status(404).render("notfound", { pageTitle: "찾을 수 없음" });
     }

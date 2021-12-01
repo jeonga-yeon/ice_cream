@@ -1,5 +1,6 @@
 extends layout
 include mixins/post
+include mixins/comment
 
 block content 
     div.profile__data
@@ -11,11 +12,19 @@ block content
     .components 
         .my__posts 
             span 내 포스트
-        .my_comments
+        .my__comments
             span 내 댓글
-    .components__posts
-        each post in user.posts
-            +post(post)
-        else
-            span.empty__message 작성한 포스트가 없습니다.
-    .components__comments
+    .components__wrap 
+        .components__posts
+            each post in user.posts
+                +post(post)
+            else
+                span.empty__message 작성한 포스트가 없습니다.
+        .components__comments
+            each comment in user.comments 
+                +comment(comment)
+            else 
+                span.empty__message 작성한 댓글이 없습니다.
+
+block script 
+    script(src="/assets/js/profile.js")
