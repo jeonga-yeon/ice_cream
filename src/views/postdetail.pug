@@ -1,8 +1,9 @@
 extends layout.pug
 
 block content 
-    .post__bookmark 
-        i.far.fa-bookmark
+    if loggedIn
+        .post__bookmark 
+            i.far.fa-bookmark
     .post__title
         h2=post.title
     .container(data-id=post._id)

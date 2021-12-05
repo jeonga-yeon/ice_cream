@@ -9,11 +9,14 @@ block content
         else 
             img(src="/" + user.avatarUrl).avatar
         h3=user.nickname
+    if String(user.id) === String(loggedInUser._id)
+        .my__bookmark 
+            i.far.fa-bookmark
     .components 
         .my__posts 
-            span 내 포스트
+            span 포스트
         .my__comments
-            span 내 댓글
+            span 댓글
     .components__wrap 
         .components__posts
             each post in user.posts
