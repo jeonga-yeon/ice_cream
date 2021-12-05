@@ -3,5 +3,8 @@ mixin post(post)
         .post-mixin__data 
             span.post-mixin__title=post.title 
             .post-mixin__meta 
-                span 작성자 #{post.owner.nickname} • 
+                if post.owner.nickname !== undefined
+                    span 작성자 #{post.owner.nickname} • 
                 span 조회수 #{post.meta.views}
+                br
+                span #{post.creationDate}
