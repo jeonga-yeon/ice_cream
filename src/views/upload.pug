@@ -5,7 +5,7 @@ block content
         span=errorMessage
     form(method="POST", enctype="multipart/form-data")
         input(type="text", placeholder="제목", required, name="title", maxlength=30)
-        input(type="text", placeholder="해시태그", required, name="hashtags")
+        input(type="text", placeholder="해시태그", name="hashtags")
         label(for="image") 사진
         input(type="file", accept="image/*", id="image", name="images", multiple)
         label(for="video") 영상

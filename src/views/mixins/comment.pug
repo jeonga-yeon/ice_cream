@@ -1,6 +1,10 @@
 mixin comment(comment)
     a(href=`/posts/${comment.post}`).comment-mixin
         .comment-mixin__data
-            span.comment-mixin__content=comment.text
+            span.post-mixin__title=comment.post.title 
+            span 작성자 #{comment.post.owner.nickname}
             br
-            span #{comment.creationDate}
+            span #{comment.text}
+            br 
+            span 조회수 #{comment.post.meta.views}
+            span #{comment.post.creationDate}
