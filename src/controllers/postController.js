@@ -1,6 +1,7 @@
 import Post from "../models/Post";
 import User from "../models/User";
 import Comment from "../models/Comment";
+import Bookmark from "../models/Bookmark";
 
 export const home = async (req, res) => {
     const posts = await Post.find({}).sort({ creationDate: "desc" }).populate("owner");
@@ -176,3 +177,30 @@ export const deleteComment = async (req, res) => {
     await Comment.findByIdAndDelete(id);
     return res.sendStatus(201);
 };
+
+export const bookmark = async (req, res) => {
+    const {
+        session: { user },
+        params: { id },
+    } = req;
+    
+    const post = await Post.findById(id);
+    const thisUser = await User.findById(user._id);
+
+    if(!post) {
+        return res.sendStatus(404);
+    }
+
+    if(!thisUser) {
+        return res.sendStatus(404);
+    }
+
+    const bookmark = await Bookmark.create({
+        post: id,
+    });
+
+    thisUser.bookmarks.push(bookmark.id);
+    thisUser.save();
+
+    return res.sendStatus(201);
+}

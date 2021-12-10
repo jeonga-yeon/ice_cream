@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
     aboutuser: String,
     posts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
     comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
+    bookmarks: [{ type: mongoose.Schema.Types.ObjectId, ref: "Bookmark" }],
 });
 
 userSchema.pre("save", async function() {

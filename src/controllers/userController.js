@@ -153,7 +153,20 @@ export const profile = async (req, res) => {
                 path: "owner",
                 model: "User",
             },
-        }
+        },
+    }).populate({
+        path: "bookmarks",
+        options: {
+            sort : {"bookmarkDate": -1},
+        },
+        populate: {
+            path: "post",
+            model: "Post",
+            populate: {
+                path: "owner",
+                model: "User",
+            },
+        },
     });
     if(!user) {
         return res.status(404).render("notfound", { pageTitle: "찾을 수 없음" });

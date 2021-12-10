@@ -13,41 +13,27 @@
   }
 }
 
-.my__bookmark {
-  width: 100%;
-  height: 40px;
-  i {
-    float: left;
-    padding: 10px;
-    font-size: 20px;
-  }
-}
-
 .components {
   width: 100%;
   height: 40px;
   .my__posts {
     float: left;
-    width: 50%;
     height: 40px;
     text-align: center;
-    display: table;
-    span {
-      display: table-cell;
-      vertical-align: middle;
-    }
     cursor: pointer;
+    margin-right: 10px;
   }
   .my__comments {
-    float: right;
-    width: 50%;
+    float: left;
     height: 40px;
     text-align: center;
-    display: table;
-    span {
-      display: table-cell;
-      vertical-align: middle;
-    }
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  .my__bookmark {
+    float: left;
+    height: 40px;
+    text-align: center;
     cursor: pointer;
   }
 }
@@ -70,6 +56,13 @@
     height: 500px;
     width: 100%;
     z-index: 1;
+    visibility: hidden;
+  }
+  .components__bookmarks {
+    position: absolute;
+    height: 500px;
+    width: 100%;
+    z-index: 0;
     visibility: hidden;
   }
 }

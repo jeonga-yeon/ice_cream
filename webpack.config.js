@@ -8,6 +8,7 @@ module.exports = {
         search: "./src/frontend/js/search.js",
         comment: "./src/frontend/js/comment.js",
         profile: "./src/frontend/js/profile.js",
+        bookmark: "./src/frontend/js/bookmark.js",
     },
     mode: "development",
     watch: true,

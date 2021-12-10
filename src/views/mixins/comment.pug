@@ -1,5 +1,5 @@
 mixin comment(comment)
-    a(href=`/posts/${comment.post}`).comment-mixin
+    a(href=`/posts/${comment.post.id}`).comment-mixin
         .comment-mixin__data
             span.post-mixin__title=comment.post.title 
             span 작성자 #{comment.post.owner.nickname}

@@ -1,6 +1,7 @@
 extends layout
 include mixins/post
 include mixins/comment
+include mixins/bookmark
 
 block content 
     div.profile__data
@@ -9,14 +10,14 @@ block content
         else 
             img(src="/" + user.avatarUrl).avatar
         h3=user.nickname
-    if String(user.id) === String(loggedInUser._id)
-        .my__bookmark 
-            i.far.fa-bookmark
     .components 
         .my__posts 
             span 포스트
         .my__comments
             span 댓글
+        if String(user.id) === String(loggedInUser._id)
+            .my__bookmark 
+                span 북마크
     .components__wrap 
         .components__posts
             each post in user.posts
@@ -28,6 +29,11 @@ block content
                 +comment(comment)
             else 
                 span.empty__message 작성한 댓글이 없습니다.
+        .components__bookmarks
+            each bookmark in user.bookmarks 
+                +bookmark(bookmark)
+            else 
+                span.empty__message 북마크한 포스트가 없습니다.
 
 block script 
     script(src="/assets/js/profile.js")
