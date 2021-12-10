@@ -101,6 +101,10 @@ export const deletePost = async (req, res) => {
     if(!post) {
         return res.status(404).render("notfound", { pageTitle: "포스트를 찾을 수 없음" });
     }
+    for(let i = 0; i < post.comments.length; i++) {
+        await Comment.findById(post.comments[i]);
+        await Comment.findByIdAndDelete(post.comments[i]);
+    }
     if(String(post.owner) !== String(_id)) {
         return res.status(403).redirect("/");
     }
