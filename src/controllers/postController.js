@@ -10,13 +10,25 @@ export const home = async (req, res) => {
 
 export const postDetail = async (req, res) => {
     const { id } = req.params;
+    const { user } = req.session;
     const post = await Post.findById(id).populate("owner").populate("comments");
     if(!post) {
         return res.render("notfound", { pageTitle: "포스트를 찾을 수 없음" });
     }
     post.meta.views = post.meta.views + 1;
     await post.save();
-    return res.render("postdetail", { pageTitle: `포스트: ${post.title}`, post });
+    const userBookmarks = [];
+    if(user === undefined) {
+        return res.render("postdetail", { pageTitle: `포스트: ${post.title}`, post });
+    } else {
+        const thisUser = await User.findById(user._id).populate("bookmarks").populate("posts");
+        for(let i = 0; i < thisUser.bookmarks.length; i++) {
+            const jsonStr = JSON.stringify(thisUser.bookmarks[i].post);
+            const jsonParse = JSON.parse(jsonStr);
+            userBookmarks.push(jsonParse);
+        }
+        return res.render("postdetail", { pageTitle: `포스트: ${post.title}`, post, userBookmarks });
+    }
 };
 
 export const getEditPost = async (req, res) => {
@@ -197,10 +209,26 @@ export const bookmark = async (req, res) => {
 
     const bookmark = await Bookmark.create({
         post: id,
+        owner: user._id,
     });
 
     thisUser.bookmarks.push(bookmark.id);
     thisUser.save();
 
+    return res.sendStatus(201);
+}
+
+export const deleteBookmark = async (req, res) => {
+    const { id } = req.params;
+    const { user: {_id} } = req.session;
+    const bookmark = await Bookmark.find({
+        post: id,
+    });
+    if(String(bookmark[0].owner) !== String(_id)) {
+        return res.sendStatus(404);
+    }
+    await Bookmark.findOneAndDelete({
+        post: id,
+    }); 
     return res.sendStatus(201);
 }

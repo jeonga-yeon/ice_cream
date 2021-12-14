@@ -1,9 +1,14 @@
 extends layout.pug
 
 block content 
-    if loggedIn
-        .post__bookmark 
-            i.far.fa-bookmark
+    .bookmark__container
+        if loggedIn
+            if userBookmarks.includes(String(post.id)) === true
+                .post__bookmarked 
+                    i.fas.fa-bookmark
+            else 
+                .post__bookmark 
+                    i.far.fa-bookmark
     .post__title
         h2=post.title
     .container(data-id=post._id)

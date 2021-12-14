@@ -8,6 +8,14 @@ body {
       font-size: 20px;
     }
   }
+  .post__bookmarked {
+    width: 100%;
+    height: 40px;
+    i {
+      float: right;
+      font-size: 20px;
+    }
+  }
   .post__title {
     text-align: left;
     margin-bottom: 20px;
