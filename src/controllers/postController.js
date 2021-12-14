@@ -223,12 +223,14 @@ export const deleteBookmark = async (req, res) => {
     const { user: {_id} } = req.session;
     const bookmark = await Bookmark.find({
         post: id,
+        owner: _id,
     });
     if(String(bookmark[0].owner) !== String(_id)) {
         return res.sendStatus(404);
     }
     await Bookmark.findOneAndDelete({
         post: id,
+        owner: _id,
     }); 
     return res.sendStatus(201);
 }
