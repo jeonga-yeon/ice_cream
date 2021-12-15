@@ -9,6 +9,7 @@ module.exports = {
         comment: "./src/frontend/js/comment.js",
         profile: "./src/frontend/js/profile.js",
         bookmark: "./src/frontend/js/bookmark.js",
+        subscription: "./src/frontend/js/subscription.js",
     },
     mode: "development",
     watch: true,

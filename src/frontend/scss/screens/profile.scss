@@ -16,25 +16,15 @@
 .components {
   width: 100%;
   height: 40px;
-  .my__posts {
+  .my__posts,
+  .my__comments,
+  .my__bookmark,
+  .my__subscription {
     float: left;
     height: 40px;
     text-align: center;
     cursor: pointer;
     margin-right: 10px;
-  }
-  .my__comments {
-    float: left;
-    height: 40px;
-    text-align: center;
-    cursor: pointer;
-    margin-right: 10px;
-  }
-  .my__bookmark {
-    float: left;
-    height: 40px;
-    text-align: center;
-    cursor: pointer;
   }
 }
 
@@ -63,6 +53,13 @@
     height: 500px;
     width: 100%;
     z-index: 0;
+    visibility: hidden;
+  }
+  .components__subscriptions {
+    position: absolute;
+    height: 500px;
+    width: 100%;
+    z-index: -1;
     visibility: hidden;
   }
 }

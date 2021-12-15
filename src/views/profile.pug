@@ -2,14 +2,22 @@ extends layout
 include mixins/post
 include mixins/comment
 include mixins/bookmark
+include mixins/subscription
 
 block content 
-    div.profile__data
+    div.profile__data(data-id=user.id)
         if user.avatarUrl === undefined
             i.fas.fa-user-circle.fa-5x
         else 
             img(src="/" + user.avatarUrl).avatar
         h3=user.nickname
+    if loggedIn
+        if String(user.id) !== String(loggedInUser._id)
+            .subscription__wrap
+                if userSubscriptions.includes(String(user.id)) === true
+                    button.subscribing 구독중
+                else
+                    button.subscription 구독하기
     .components 
         .my__posts 
             span 포스트
@@ -18,6 +26,8 @@ block content
         if String(user.id) === String(loggedInUser._id)
             .my__bookmark 
                 span 북마크
+            .my__subscription
+                span 구독
     .components__wrap 
         .components__posts
             each post in user.posts
@@ -34,6 +44,12 @@ block content
                 +bookmark(bookmark)
             else 
                 span.empty__message 북마크한 포스트가 없습니다.
+        .components__subscriptions
+            each subscription in user.subscriptions 
+                +subscription(subscription)
+            else 
+                span.empty__message 구독한 사용자가 없습니다.
 
 block script 
     script(src="/assets/js/profile.js")
+    script(src="/assets/js/subscription.js")

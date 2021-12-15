@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema({
     posts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
     comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
     bookmarks: [{ type: mongoose.Schema.Types.ObjectId, ref: "Bookmark" }],
+    subscriptions: [{ type: mongoose.Schema.Types.ObjectId, ref: "Subscription" }],
 });
 
 userSchema.pre("save", async function() {

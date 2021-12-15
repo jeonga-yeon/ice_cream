@@ -1,4 +1,5 @@
 import User from "../models/User";
+import Subscription from "../models/Subscription";
 import bcrypt from "bcrypt";
 
 export const getJoin = (req, res) => res.render("Join", { pageTitle: "회원가입" });
@@ -132,6 +133,7 @@ export const postChangePassword = async (req, res) => {
 
 export const profile = async (req, res) => {
     const { id } = req.params;
+    const { user: { _id } } = req.session;
     const user = await User.findById(id).populate({
         path: "posts",
         options: {
@@ -167,12 +169,79 @@ export const profile = async (req, res) => {
                 model: "User",
             },
         },
+    }).populate({
+        path: "subscriptions",
+        options: {
+            sort : {"subscriptionDate": -1},
+        },
+        populate: {
+            path: "channel",
+            model: "User",
+        },
     });
     if(!user) {
         return res.status(404).render("notfound", { pageTitle: "찾을 수 없음" });
     }
+    const userSubscriptions = [];
+    const thisUser = await User.findById(_id).populate("subscriptions");
+    for(let i = 0; i < thisUser.subscriptions.length; i++) {
+        const jsonStr = JSON.stringify(thisUser.subscriptions[i].channel);
+        const jsonParse = JSON.parse(jsonStr);
+        userSubscriptions.push(jsonParse);
+    }
     return res.render("profile", { 
         pageTitle: `${user.nickname}의 프로필`, 
         user, 
+        userSubscriptions
     });
 };
+
+export const subscription = async (req, res) => {
+    const {
+        session: { user },
+        params: { id },
+    } = req;
+    
+    const channel = await User.findById(id);
+    const loggedinUser = await User.findById(user._id);
+
+    if(!channel) {
+        return res.sendStatus(404);
+    }
+
+    if(!loggedinUser) {
+        return res.sendStatus(404);
+    }
+
+    const subscription = await Subscription.create({
+        channel: id,
+        owner: user._id,
+    });
+
+    loggedinUser.subscriptions.push(subscription.id);
+    loggedinUser.save();
+
+    return res.sendStatus(201);
+}
+
+export const deleteSubscription = async (req, res) => {
+    const {
+        session: { user },
+        params: { id },
+    } = req;
+
+    const subscription = await Subscription.find({
+        channel: id,
+        owner: user._id,
+    });
+    
+    if(String(subscription[0].owner) !== String(user._id)) {
+        return res.sendStatus(404);
+    }
+    await Subscription.findOneAndDelete({
+        channel: id,
+        owner: user._id,
+    });  
+
+    return res.sendStatus(201);
+}

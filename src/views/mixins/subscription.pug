@@ -1,0 +1,9 @@
+mixin subscription(subscription)
+    a(href=`/users/${subscription.channel.id}`).post-mixin
+        .post-mixin__data 
+            if subscription.channel.avatarUrl === undefined
+                i.fas.fa-user-circle.fa-5x
+            else 
+                img(src="/" + subscription.channel.avatarUrl).avatar
+            span.post-mixin__title=subscription.channel.nickname
+            span.subscription-mixin__aboutuser=subscription.channel.aboutuser
