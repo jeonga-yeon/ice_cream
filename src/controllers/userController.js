@@ -133,8 +133,8 @@ export const postChangePassword = async (req, res) => {
 
 export const profile = async (req, res) => {
     const { id } = req.params;
-    const { user: { _id } } = req.session;
-    const user = await User.findById(id).populate({
+    const { user } = req.session;
+    const profileUser = await User.findById(id).populate({
         path: "posts",
         options: {
             sort : {"creationDate": -1},
@@ -179,21 +179,28 @@ export const profile = async (req, res) => {
             model: "User",
         },
     });
-    if(!user) {
+    if(!profileUser) {
         return res.status(404).render("notfound", { pageTitle: "찾을 수 없음" });
     }
     const userSubscriptions = [];
-    const thisUser = await User.findById(_id).populate("subscriptions");
-    for(let i = 0; i < thisUser.subscriptions.length; i++) {
-        const jsonStr = JSON.stringify(thisUser.subscriptions[i].channel);
-        const jsonParse = JSON.parse(jsonStr);
-        userSubscriptions.push(jsonParse);
+    if(user === undefined) {
+        return res.render("profile", { 
+            pageTitle: `${profileUser.nickname}의 프로필`, 
+            profileUser
+        });
+    } else {
+        const thisUser = await User.findById(user._id).populate("subscriptions");
+        for(let i = 0; i < thisUser.subscriptions.length; i++) {
+            const jsonStr = JSON.stringify(thisUser.subscriptions[i].channel);
+            const jsonParse = JSON.parse(jsonStr);
+            userSubscriptions.push(jsonParse);
+        }
+        return res.render("profile", { 
+            pageTitle: `${profileUser.nickname}의 프로필`, 
+            profileUser, 
+            userSubscriptions
+        });
     }
-    return res.render("profile", { 
-        pageTitle: `${user.nickname}의 프로필`, 
-        user, 
-        userSubscriptions
-    });
 };
 
 export const subscription = async (req, res) => {

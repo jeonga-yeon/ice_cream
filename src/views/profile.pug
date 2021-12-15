@@ -5,16 +5,16 @@ include mixins/bookmark
 include mixins/subscription
 
 block content 
-    div.profile__data(data-id=user.id)
-        if user.avatarUrl === undefined
+    div.profile__data(data-id=profileUser.id)
+        if profileUser.avatarUrl === undefined
             i.fas.fa-user-circle.fa-5x
         else 
-            img(src="/" + user.avatarUrl).avatar
-        h3=user.nickname
+            img(src="/" + profileUser.avatarUrl).avatar
+        h3=profileUser.nickname
     if loggedIn
-        if String(user.id) !== String(loggedInUser._id)
+        if String(profileUser.id) !== String(loggedInUser._id)
             .subscription__wrap
-                if userSubscriptions.includes(String(user.id)) === true
+                if userSubscriptions.includes(String(profileUser.id)) === true
                     button.subscribing 구독중
                 else
                     button.subscription 구독하기
@@ -23,29 +23,29 @@ block content
             span 포스트
         .my__comments
             span 댓글
-        if String(user.id) === String(loggedInUser._id)
+        if String(profileUser.id) === String(loggedInUser._id)
             .my__bookmark 
                 span 북마크
             .my__subscription
                 span 구독
     .components__wrap 
         .components__posts
-            each post in user.posts
+            each post in profileUser.posts
                 +post(post)
             else
                 span.empty__message 작성한 포스트가 없습니다.
         .components__comments
-            each comment in user.comments 
+            each comment in profileUser.comments 
                 +comment(comment)
             else 
                 span.empty__message 작성한 댓글이 없습니다.
         .components__bookmarks
-            each bookmark in user.bookmarks 
+            each bookmark in profileUser.bookmarks 
                 +bookmark(bookmark)
             else 
                 span.empty__message 북마크한 포스트가 없습니다.
         .components__subscriptions
-            each subscription in user.subscriptions 
+            each subscription in profileUser.subscriptions 
                 +subscription(subscription)
             else 
                 span.empty__message 구독한 사용자가 없습니다.
