@@ -4,7 +4,7 @@ const loggedinTextarea = form.querySelector(".loggedin__textarea");
 const button = form.querySelector("button");
 const deleteComments = document.querySelectorAll(".delete__comment");
 
-const addComment = (text, id, commentAvatar, commentOwner) => {
+const addComment = (text, id, commentAvatar, commentOwner, commentNickname) => {
     const postComments = document.querySelector(".post__comments ul");
     const newComment = document.createElement("li");
     newComment.dataset.id = id;
@@ -21,13 +21,16 @@ const addComment = (text, id, commentAvatar, commentOwner) => {
         img.src = `/${commentAvatar}`;
         a.appendChild(img);
     }
+    const nickname = document.createElement("span");
+    nickname.innerText = commentNickname + " ";
     const span = document.createElement("span");
-    span.innerText = text;
+    span.innerText = text + " ";
     const deleteSpan = document.createElement("span");
     deleteSpan.className = "delete__comment";
     deleteSpan.innerText = "삭제";
     deleteSpan.addEventListener("click", deleteCommentBtn);
     newComment.appendChild(a);
+    newComment.appendChild(nickname);
     newComment.appendChild(span);
     newComment.appendChild(deleteSpan);
     postComments.prepend(newComment);
@@ -48,8 +51,8 @@ const handleSubmit = async (event) => {
         body: JSON.stringify({ text }),
     });
     if(response.status === 201) {
-        const { newCommentId, newCommentAvatar, newCommentOwner } = await response.json();
-        addComment(text, newCommentId, newCommentAvatar, newCommentOwner);
+        const { newCommentId, newCommentAvatar, newCommentOwner, newCommentNickname } = await response.json();
+        addComment(text, newCommentId, newCommentAvatar, newCommentOwner, newCommentNickname);
         loggedinTextarea.value = "";
     }
 };

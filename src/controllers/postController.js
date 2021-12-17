@@ -188,10 +188,13 @@ export const createComment = async (req, res) => {
     thisUser.comments.push(comment._id);
     thisUser.save();
 
+    const thisComment = await Comment.findById(comment._id).populate("owner");
+
     return res.status(201).json({
         newCommentId: comment._id,
-        newCommentAvatar: comment.owner.avatarUrl,
-        newCommentOwner: comment.owner._id
+        newCommentAvatar: thisComment.owner.avatarUrl,
+        newCommentOwner: comment.owner._id,
+        newCommentNickname: thisComment.owner.nickname
     });
 };
 

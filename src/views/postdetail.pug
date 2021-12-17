@@ -52,10 +52,12 @@ block content
                     if comment.owner.avatarUrl === undefined
                         a(href=`/users/${comment.owner._id}`)
                             i.fas.fa-user-circle.fa-5x
+                        span #{comment.owner.nickname} 
                         span #{comment.text} 
                     else 
                         a(href=`/users/${comment.owner._id}`)
                             img.comment__avatar(src="/" + comment.owner.avatarUrl)
+                        span #{comment.owner.nickname} 
                         span #{comment.text} 
                     if String(comment.owner._id) === String(loggedInUser._id)
                         span(class="delete__comment") 삭제
