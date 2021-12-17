@@ -114,12 +114,19 @@ export const deletePost = async (req, res) => {
     if(!post) {
         return res.status(404).render("notfound", { pageTitle: "포스트를 찾을 수 없음" });
     }
-    for(let i = 0; i < post.comments.length; i++) {
-        await Comment.findById(post.comments[i]);
-        await Comment.findByIdAndDelete(post.comments[i]);
-    }
     if(String(post.owner) !== String(_id)) {
         return res.status(403).redirect("/");
+    }
+    for(let i = 0; i < post.comments.length; i++) {
+        await Comment.findByIdAndDelete(post.comments[i]);
+    }
+    const bookmarks = await Bookmark.find({
+        post: id,
+    });
+    for(let i = 0; i < bookmarks.length; i++) {
+        await Bookmark.deleteMany({
+            post: id,
+        });
     }
     await Post.findByIdAndDelete(id);
     return res.redirect("/");
@@ -133,13 +140,14 @@ export const search = async (req, res) => {
             title: {
                 $regex: new RegExp(keyword, "i")
             },
-        }).populate("owner");
+        }).sort({ creationDate: "desc" }).populate("owner");
         if(posts.length === 0) {
             posts = await Post.find({
                 hashtags: {
-                    $regex: new RegExp(keyword, "i")
+                    $regex: keyword,
+                    $options: "i",
                 },
-            }).populate("owner");
+            }).sort({ creationDate: "desc" }).populate("owner");
         }
     }
     return res.render("search", { pageTitle: "검색", posts});
