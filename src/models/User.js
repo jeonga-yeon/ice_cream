@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
     comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
     bookmarks: [{ type: mongoose.Schema.Types.ObjectId, ref: "Bookmark" }],
     subscriptions: [{ type: mongoose.Schema.Types.ObjectId, ref: "Subscription" }],
+    subscribers: { type: Number, default: 0, required: true },
 });
 
 userSchema.pre("save", async function() {

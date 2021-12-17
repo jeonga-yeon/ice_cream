@@ -228,6 +228,9 @@ export const subscription = async (req, res) => {
     loggedinUser.subscriptions.push(subscription.id);
     loggedinUser.save();
 
+    channel.subscribers = channel.subscribers + 1;
+    channel.save();
+
     return res.sendStatus(201);
 }
 
