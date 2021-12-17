@@ -11,7 +11,13 @@ export const home = async (req, res) => {
 export const postDetail = async (req, res) => {
     const { id } = req.params;
     const { user } = req.session;
-    const post = await Post.findById(id).populate("owner").populate("comments");
+    const post = await Post.findById(id).populate("owner").populate({
+        path: "comments",
+        populate: {
+            path: "owner",
+            model: "User",
+        },
+    });
     if(!post) {
         return res.render("notfound", { pageTitle: "포스트를 찾을 수 없음" });
     }
@@ -183,7 +189,9 @@ export const createComment = async (req, res) => {
     thisUser.save();
 
     return res.status(201).json({
-        newCommentId: comment._id
+        newCommentId: comment._id,
+        newCommentAvatar: comment.owner.avatarUrl,
+        newCommentOwner: comment.owner._id
     });
 };
 
