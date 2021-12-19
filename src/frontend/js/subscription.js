@@ -31,6 +31,6 @@ const handleSubscription = async (subscription) => {
 
 if(subscription) {
     subscription.addEventListener("click", function(){handleSubscription(subscription)});
-} else {
+} else if(subscribing) {
     subscribing.addEventListener("click", function(){handleSubscribing(subscribing)});
 }

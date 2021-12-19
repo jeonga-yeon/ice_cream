@@ -6,6 +6,8 @@ const componentsPosts = document.querySelector(".components__posts");
 const componentsComments = document.querySelector(".components__comments");
 const componentsBookmarks = document.querySelector(".components__bookmarks");
 const componentsSubscriptions = document.querySelector(".components__subscriptions");
+const settings = document.querySelector(".settings");
+const userSettings = document.querySelector(".user__settings");
 
 function handleMyPosts() {
     componentsPosts.style.zIndex = "2";
@@ -46,7 +48,27 @@ function handleMySubscription() {
     componentsBookmarks.style.visibility = "hidden";
 }
 
+function handleCloseSetting() {
+    userSettings.style.display = "none";
+    settings.removeEventListener("click", handleCloseSetting);
+    settings.addEventListener("click", handleSettings);
+}
+
+function handleSettings() {
+    userSettings.style.display = "block";
+    settings.removeEventListener("click", handleSettings);
+    settings.addEventListener("click", handleCloseSetting);
+}
+
 myPosts.addEventListener("click", handleMyPosts);
 myComments.addEventListener("click", handleMyComments);
-myBookmark.addEventListener("click", handleMyBookmark);
-mySubscription.addEventListener("click", handleMySubscription);
+if(myBookmark) {
+    myBookmark.addEventListener("click", handleMyBookmark);
+}
+if(mySubscription) {
+    mySubscription.addEventListener("click", handleMySubscription);
+}
+if(settings) {
+    settings.cursor = "pointer";
+    settings.addEventListener("click", handleSettings);
+}

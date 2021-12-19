@@ -13,9 +13,19 @@
   }
 }
 
+.settings {
+  cursor: pointer;
+}
+
+.user__settings {
+  width: auto;
+  display: none;
+}
+
 .components {
   width: 100%;
   height: 40px;
+  margin-top: 10px;
   .my__posts,
   .my__comments,
   .my__bookmark,

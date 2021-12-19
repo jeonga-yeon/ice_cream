@@ -39,6 +39,6 @@ const handlePostBookmark = async (postBookmark) => {
 
 if(postBookmark) {
     postBookmark.addEventListener("click", function(){handlePostBookmark(postBookmark)});
-} else {
+} else if(postBookmarked) {
     postBookmarked.addEventListener("click", function(){handlePostBookmarked(postBookmarked)});
 }

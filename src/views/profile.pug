@@ -19,6 +19,18 @@ block content
                     button.subscribing 구독중
                 else
                     button.subscription 구독하기
+        else 
+            i.fas.fa-cog.settings
+            .user__settings
+                span 사용자 #{profileUser.nickname}
+                br
+                span 계정 #{profileUser.email} 
+                br
+                span 구독자 #{profileUser.subscribers}
+                br
+                span 가입 날짜 #{profileUser.creationDate}
+                br
+                button 회원탈퇴
     .components 
         .my__posts 
             span 포스트

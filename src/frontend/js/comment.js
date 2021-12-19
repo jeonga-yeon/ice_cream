@@ -1,7 +1,6 @@
 const container = document.querySelector(".container");
 const form = document.getElementById("commentForm");
 const loggedinTextarea = form.querySelector(".loggedin__textarea");
-const button = form.querySelector("button");
 const deleteComments = document.querySelectorAll(".delete__comment");
 
 const addComment = (text, id, commentAvatar, commentOwner, commentNickname) => {
