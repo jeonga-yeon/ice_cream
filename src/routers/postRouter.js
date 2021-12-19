@@ -9,7 +9,10 @@ postRouter.route("/upload").all(protectorMiddleware)
     .post(postUploadMiddleware
     .fields([{ name: "videos", maxCount: 3 }, { name: 'images', maxCount: 10 }]), postUpload);
 postRouter.get("/:id", postDetail);
-postRouter.route("/:id/edit").all(protectorMiddleware).get(getEditPost).post(postEditPost);
+postRouter.route("/:id/edit").all(protectorMiddleware)
+    .get(getEditPost)
+    .post(postUploadMiddleware
+    .fields([{ name: "videos", maxCount: 3 }, { name: 'images', maxCount: 10 }]), postEditPost);
 postRouter.route("/:id/delete").all(protectorMiddleware).get(deletePost);
 
 export default postRouter;

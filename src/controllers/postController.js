@@ -54,16 +54,32 @@ export const postEditPost = async (req, res) => {
     const { user: {_id} } = req.session;
     const { id } = req.params;
     const { title, content, hashtags } = req.body;
-    const post = await Post.exists({ _id: id });
+    const post = await Post.findById(id);
     if(!post) {
         return res.status(404).render("notfound", { pageTitle: "포스트를 찾을 수 없음" });
     }
     if(String(post.owner) !== String(_id)) {
         return res.status(403).redirect("/");
     }
+    const videoFiles = req.files["videos"];
+    const imageFiles = req.files["images"];
+    let videosUrl = [];
+    let imagesUrl = [];
+    if(videoFiles) {
+        for(let i = 0; i < videoFiles.length; i++) {
+            videosUrl.push(`/${videoFiles[i].path}`)
+        }
+    }
+    if(imageFiles) {
+        for(let i = 0; i < imageFiles.length; i++) {
+            imagesUrl.push(`/${imageFiles[i].path}`)
+        }
+    }
     await Post.findByIdAndUpdate(id, {
         title, 
         content, 
+        videosUrl,
+        imagesUrl,
         hashtags: Post.handleHashtags(hashtags),
     });
     return res.redirect(`/posts/${id}`);
