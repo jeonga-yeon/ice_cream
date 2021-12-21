@@ -8,6 +8,8 @@ const componentsBookmarks = document.querySelector(".components__bookmarks");
 const componentsSubscriptions = document.querySelector(".components__subscriptions");
 const settings = document.querySelector(".settings");
 const userSettings = document.querySelector(".user__settings");
+const withdrawalBtn = userSettings.querySelector(".withdrawal");
+const profileData = document.querySelector(".profile__data");
 
 function handleMyPosts() {
     componentsPosts.style.zIndex = "2";
@@ -60,6 +62,19 @@ function handleSettings() {
     settings.addEventListener("click", handleCloseSetting);
 }
 
+const handleWithdrawal = async () => {
+    const answer = confirm("정말 탈퇴하시겠습니까?\n회원님의 모든 정보가 삭제됩니다.");
+    if(answer) {
+        const userId = profileData.dataset.id;
+        await fetch(`/api/users/${userId}/user-delete`, {
+            method: "DELETE"
+        });
+    } else {
+
+    }
+    window.location.replace("/");
+}
+
 myPosts.addEventListener("click", handleMyPosts);
 myComments.addEventListener("click", handleMyComments);
 if(myBookmark) {
@@ -71,4 +86,5 @@ if(mySubscription) {
 if(settings) {
     settings.cursor = "pointer";
     settings.addEventListener("click", handleSettings);
+    withdrawalBtn.addEventListener("click", handleWithdrawal);
 }

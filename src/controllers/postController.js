@@ -152,7 +152,7 @@ export const deletePost = async (req, res) => {
     }
     await Post.findByIdAndDelete(id);
     return res.redirect("/");
-}
+};
 
 export const search = async (req, res) => {
     const { keyword } = req.query;

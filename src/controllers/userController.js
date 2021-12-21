@@ -1,6 +1,9 @@
 import User from "../models/User";
 import Subscription from "../models/Subscription";
 import bcrypt from "bcrypt";
+import Post from "../models/Post";
+import Comment from "../models/Comment";
+import Bookmark from "../models/Bookmark";
 
 export const getJoin = (req, res) => res.render("Join", { pageTitle: "회원가입" });
 export const postJoin = async (req, res) => {
@@ -262,5 +265,61 @@ export const deleteSubscription = async (req, res) => {
     thisChannel.subscribers = thisChannel.subscribers - 1;
     thisChannel.save();
 
+    return res.sendStatus(201);
+}
+
+export const deleteUser = async (req, res) => {
+    const {
+        session: { user: { _id } },
+        params: { id },
+    } = req;
+    const user = await User.findById(id)
+    .populate({
+        path: "posts",
+        populate:{
+            path: "comments",
+            model: "Comment",
+        }
+    })
+    .populate("comments")
+    .populate({
+        path: "bookmarks",
+        populate: {
+            path: "post",
+            model: "Post",
+        },
+    });
+    if(!user) {
+        return res.status(404).render("notfound", { pageTitle: "사용자를 찾을 수 없음" });
+    }
+    if(String(user.id) !== String(_id)) {
+        return res.status(403).redirect("/");
+    }
+    for(let i = 0; i < user.posts.length; i++) {
+        await Post.findByIdAndDelete(user.posts[i]);
+        for(let j = 0; j < user.posts[i].comments.length; j++) {
+            await Comment.findByIdAndDelete(user.posts[i].comments[j]);
+        }
+        await Bookmark.deleteMany({
+            post: user.posts[i].id,
+        })
+    }
+    for(let i = 0; i < user.comments.length; i++) {
+        await Comment.findByIdAndDelete(user.comments[i]);
+    }
+    await Bookmark.deleteMany({
+        owner: id,
+    })
+    const channels = await Subscription.find({
+        owner: id,
+    }).populate("owner");
+    for(let i = 0; i < channels.length; i++) {
+        channels[i].owner.subscribers = channels[i].owner.subscribers - 1;
+    }
+    await Subscription.deleteMany({
+        channel: id,
+    });
+    await User.findByIdAndDelete(id);
+    req.session.destroy();
     return res.sendStatus(201);
 }
