@@ -8,7 +8,7 @@ const componentsBookmarks = document.querySelector(".components__bookmarks");
 const componentsSubscriptions = document.querySelector(".components__subscriptions");
 const settings = document.querySelector(".settings");
 const userSettings = document.querySelector(".user__settings");
-const withdrawalBtn = userSettings.querySelector(".withdrawal");
+const withdrawalBtn = document.querySelector(".withdrawal");
 const profileData = document.querySelector(".profile__data");
 
 function handleMyPosts() {

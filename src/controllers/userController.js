@@ -309,12 +309,13 @@ export const deleteUser = async (req, res) => {
     }
     await Bookmark.deleteMany({
         owner: id,
-    })
+    });
     const channels = await Subscription.find({
         owner: id,
-    }).populate("owner");
+    }).populate("channel");
     for(let i = 0; i < channels.length; i++) {
-        channels[i].owner.subscribers = channels[i].owner.subscribers - 1;
+        channels[i].channel.subscribers = channels[i].channel.subscribers - 1;
+        channels[i].channel.save();
     }
     await Subscription.deleteMany({
         channel: id,
