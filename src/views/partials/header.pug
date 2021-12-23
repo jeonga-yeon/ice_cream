@@ -18,6 +18,8 @@ header
                     a(href=`/users/${loggedInUser._id}`)
                         if loggedInUser.avatarUrl === undefined
                             i.fas.fa-user-circle
+                        else if loggedInUser.avatarUrl === null
+                            i.fas.fa-user-circle
                         else
                             img.header__avatar(src="/" + loggedInUser.avatarUrl)
             else 

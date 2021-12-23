@@ -323,4 +323,22 @@ export const deleteUser = async (req, res) => {
     await User.findByIdAndDelete(id);
     req.session.destroy();
     return res.sendStatus(201);
-}
+};
+
+export const deleteProfileImg = async (req, res) => {
+    const {
+        session: { user },
+        params: { id },
+    } = req;
+
+    const thisUser = await User.findById(id);
+
+    if(String(thisUser.id) !== String(user._id)) {
+        return res.sendStatus(404);
+    }
+    
+    thisUser.avatarUrl = null;
+    thisUser.save();
+    user.avatarUrl = null;
+    return res.sendStatus(201);
+};

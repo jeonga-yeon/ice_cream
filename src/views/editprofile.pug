@@ -1,11 +1,14 @@
 extends layout
 
 block content   
-    .profile__data
+    .profile__data(data-id=loggedInUser._id)
         if loggedInUser.avatarUrl === undefined 
             i.fas.fa-user-circle.fa-5x 
+        else if loggedInUser.avatarUrl === null
+            i.fas.fa-user-circle.fa-5x
         else
             img(src="/"+loggedInUser.avatarUrl, width="100", height="100" class="avatar change-avatar")
+    input(type="button", id="delete__image", value="프로필 이미지 삭제")
     form(method="POST", enctype="multipart/form-data").edit-profile__form
         label(for="avatar") 프로필 사진 변경
         input(type="file", id="avatar", name="avatar", accept="image/*")
@@ -15,3 +18,6 @@ block content
         input(type="submit", value="수정")
         .change-password
             a(href="change-password") 비밀번호 변경
+
+block script 
+    script(src="/assets/js/editprofile.js")

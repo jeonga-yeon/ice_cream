@@ -8,6 +8,8 @@ block content
     div.profile__data(data-id=profileUser.id)
         if profileUser.avatarUrl === undefined
             i.fas.fa-user-circle.fa-5x
+        else if profileUser.avatarUrl === null
+            i.fas.fa-user-circle.fa-5x
         else 
             img(src="/" + profileUser.avatarUrl).avatar
         h3=profileUser.nickname

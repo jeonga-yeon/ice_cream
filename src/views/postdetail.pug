@@ -27,7 +27,14 @@ block content
         small=post.creationDate
     div 
         small
-            a(href=`/users/${post.owner._id}`)=post.owner.nickname
+            a(href=`/users/${post.owner._id}`)
+                if post.owner.avatarUrl === undefined
+                    i.fas.fa-user-circle
+                else if post.owner.avatarUrl === null
+                    i.fas.fa-user-circle
+                else
+                    img.poster__avatar(src="/" + post.owner.avatarUrl)
+                span=post.owner.nickname
             span 님이 업로드한 포스트
             br
             span 조회수 #{post.meta.views - 1} 
@@ -50,6 +57,11 @@ block content
             each comment in post.comments.reverse()
                 li.post__comment(data-id=comment.id)
                     if comment.owner.avatarUrl === undefined
+                        a(href=`/users/${comment.owner._id}`)
+                            i.fas.fa-user-circle.fa-5x
+                        span #{comment.owner.nickname} 
+                        span #{comment.text} 
+                    else if comment.owner.avatarUrl === null
                         a(href=`/users/${comment.owner._id}`)
                             i.fas.fa-user-circle.fa-5x
                         span #{comment.owner.nickname} 
