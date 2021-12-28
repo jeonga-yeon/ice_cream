@@ -14,6 +14,9 @@ block content
             img(src="/" + profileUser.avatarUrl).avatar
         h3=profileUser.nickname
         span 구독자 #{profileUser.subscribers}
+        if String(profileUser.id) === String(loggedInUser._id)
+            a(href="/users/edit-profile")
+                i.fas.fa-edit
     if loggedIn
         if String(profileUser.id) !== String(loggedInUser._id)
             .subscription__wrap

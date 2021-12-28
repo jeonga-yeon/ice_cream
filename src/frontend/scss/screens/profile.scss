@@ -50,6 +50,7 @@
     a {
       color: black;
     }
+    overflow: auto;
   }
   .components__comments {
     position: absolute;
@@ -57,6 +58,7 @@
     width: 100%;
     z-index: 1;
     visibility: hidden;
+    overflow: auto;
   }
   .components__bookmarks {
     position: absolute;
@@ -64,6 +66,7 @@
     width: 100%;
     z-index: 0;
     visibility: hidden;
+    overflow: auto;
   }
   .components__subscriptions {
     position: absolute;
@@ -71,5 +74,6 @@
     width: 100%;
     z-index: -1;
     visibility: hidden;
+    overflow: auto;
   }
 }

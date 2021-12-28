@@ -13,8 +13,6 @@ header
                 li 
                     a(href="/users/logout") 로그아웃
                 li 
-                    a(href="/users/edit-profile") 프로필 수정
-                li 
                     a(href=`/users/${loggedInUser._id}`)
                         if loggedInUser.avatarUrl === undefined
                             i.fas.fa-user-circle
