@@ -1,0 +1,13 @@
+mixin homePost(post)
+    a(href=`/posts/${post.id}`).homepost-mixin
+        .homepost-mixin__data 
+            span.homepost-mixin__title=post.title 
+            if post.imagesUrl.length !== 0
+                img(src=post.imagesUrl[0], class="homepost-mixin__image")
+            else if post.videosUrl.length !== 0
+                video(preload="metadata" src=`${post.videosUrl[0]}#t=0.5`, class="homepost-mixin__video")
+            .homepost-mixin__meta 
+                span 작성자 #{post.owner.nickname} • 
+                span 조회수 #{post.meta.views}
+                br
+                span #{post.creationDate}

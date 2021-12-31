@@ -1,9 +1,9 @@
 extends layout.pug
-include mixins/post
+include mixins/homePost
 
 block content 
-    h2 Posts💜
+    h1 Posts
     each post in posts 
-        +post(post)
+        +homePost(post)
     else 
         span.not_found 찾을 수 없음
