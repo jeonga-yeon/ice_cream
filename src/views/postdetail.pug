@@ -24,7 +24,7 @@ block content
             a(href=`/search?keyword=` + hashtag.replace('#', '%23'))
                 span.hashtag=hashtag
         br
-        small=post.creationDate
+        small.date__created=post.creationDate
     div 
         small
             a(href=`/users/${post.owner._id}`)
@@ -79,3 +79,4 @@ block script
     script(src="/assets/js/postdetail.js")
     script(src="/assets/js/comment.js")
     script(src="/assets/js/bookmark.js")
+    script(src="/assets/js/date.js")

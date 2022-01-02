@@ -7,4 +7,4 @@ mixin comment(comment)
             span #{comment.text}
             br 
             span 조회수 #{comment.post.meta.views}
-            span #{comment.post.creationDate}
+            span.date__created #{comment.post.creationDate}

@@ -10,7 +10,8 @@ module.exports = {
         profile: "./src/frontend/js/profile.js",
         bookmark: "./src/frontend/js/bookmark.js",
         subscription: "./src/frontend/js/subscription.js",
-        editprofile: "./src/frontend/js/editprofile.js"
+        editprofile: "./src/frontend/js/editprofile.js",
+        date: "./src/frontend/js/date.js"
     },
     mode: "development",
     watch: true,

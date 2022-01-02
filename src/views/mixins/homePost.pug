@@ -1,6 +1,6 @@
 mixin homePost(post)
-    a(href=`/posts/${post.id}`).homepost-mixin
-        .homepost-mixin__data 
+    .homepost-mixin
+        a(href=`/posts/${post.id}`).homepost-mixin__data 
             span.homepost-mixin__title=post.title 
             if post.imagesUrl.length !== 0
                 img(src=post.imagesUrl[0], class="homepost-mixin__image")
@@ -9,5 +9,6 @@ mixin homePost(post)
             .homepost-mixin__meta 
                 span 작성자 #{post.owner.nickname} • 
                 span 조회수 #{post.meta.views}
-                br
-                span #{post.creationDate}
+        each hashtag in post.hashtags 
+            a(href=`/search?keyword=` + hashtag.replace('#', '%23'))
+                span.hashtag=hashtag
