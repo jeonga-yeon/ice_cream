@@ -2,7 +2,7 @@ extends layout.pug
 include mixins/homePost
 
 block content 
-    h1 Posts
+    h1.home Posts
     each post in posts 
         +homePost(post)
     else 

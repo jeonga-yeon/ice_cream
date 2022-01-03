@@ -6,9 +6,17 @@ mixin homePost(post)
                 img(src=post.imagesUrl[0], class="homepost-mixin__image")
             else if post.videosUrl.length !== 0
                 video(preload="metadata" src=`${post.videosUrl[0]}#t=0.5`, class="homepost-mixin__video")
+            else 
+                .homepost-mixin__content 
+                    if post.content.length > 100
+                        p #{post.content.slice(0,100)}...
+                    else 
+                        p=post.content
             .homepost-mixin__meta 
                 span 작성자 #{post.owner.nickname} • 
                 span 조회수 #{post.meta.views}
-        each hashtag in post.hashtags 
-            a(href=`/search?keyword=` + hashtag.replace('#', '%23'))
-                span.hashtag=hashtag
+        if post.hashtags[0] !== ""
+            .homepost-mixin__hashtags
+                each hashtag in post.hashtags 
+                    a(href=`/search?keyword=` + hashtag.replace('#', '%23'))
+                        span.home__hashtag=hashtag.replace("#", "")

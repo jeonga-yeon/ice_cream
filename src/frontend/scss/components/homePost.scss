@@ -1,13 +1,13 @@
 .homepost-mixin {
-  height: 290px;
-  border-radius: 15px;
+  height: 310px;
+  border-radius: 10px;
   display: inline-block;
   margin-top: 30px;
   margin-left: 30px;
   margin-bottom: 30px;
   padding: 0px 20px;
   position: relative;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   overflow: hidden;
   .homepost-mixin__data {
     padding: 0px 15px;
@@ -25,9 +25,32 @@
       height: 200px;
       width: auto;
     }
+    .homepost-mixin__content {
+      height: 200px;
+      width: 200px;
+      display: table;
+      p {
+        display: table-cell;
+        vertical-align: middle;
+      }
+    }
     .homepost-mixin__meta {
       margin-top: 5px;
       font-size: 12px;
+    }
+  }
+  .homepost-mixin__hashtags {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: -0.12px;
+    height: 22px;
+    span.home__hashtag {
+      display: inline-block;
+      color: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 2px;
+      margin-right: 6px;
+      padding: 3px 8px;
     }
   }
 }
