@@ -1,8 +1,6 @@
 extends layout.pug 
 
 block content 
-    if errorMessage 
-        span=errorMessage
     form(method="POST", enctype="multipart/form-data")
         input(type="text", placeholder="제목", required, name="title", maxlength=30)
         input(type="text", placeholder="해시태그", name="hashtags")
@@ -12,3 +10,6 @@ block content
         input(type="file", accept="video/*", id="video", name="videos", multiple)
         textarea(placeholder="내용 작성(최대 500자)", id="content", name="content", required, maxlength=500)
         input(type="submit", value="포스트")
+    if errorMessage 
+        .error__message
+            span=errorMessage

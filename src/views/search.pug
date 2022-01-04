@@ -6,7 +6,7 @@ block content
         input(type="text", placeholder="검색어 입력", name="keyword")
         button
             i.fas.fa-search
-    div 
+    .search__results
         each post in posts 
             +post(post)
         else 

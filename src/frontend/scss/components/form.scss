@@ -1,6 +1,6 @@
 form {
   max-width: 420px;
-  margin: 0 auto;
+  margin: 30px auto;
   &:not(.search__form) {
     padding: 30px;
     background-color: rgba($color: pink, $alpha: 0.7);
@@ -34,4 +34,10 @@ form {
     cursor: pointer;
     display: block;
   }
+}
+
+.error__message,
+.click__join {
+  max-width: 482px;
+  margin: 10px auto;
 }

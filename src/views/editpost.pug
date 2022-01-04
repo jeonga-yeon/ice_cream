@@ -1,7 +1,6 @@
 extends layout.pug
 
 block content 
-    h4 포스트 수정
     form(method="POST", enctype="multipart/form-data")
         input(type="text", placeholder="제목", required, name="title", maxlength=30, value=post.title)
         input(type="text", placeholder="해시태그", required, name="hashtags", value=post.hashtags.join().replace(/\,/gi, " "))
