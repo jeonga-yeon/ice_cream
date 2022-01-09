@@ -3,9 +3,7 @@ mixin comment(comment)
         .comment-mixin__data
             span.comment-mixin__title=comment.post.title 
                 .comment-mixin__meta
-                    span posted by #{comment.post.owner.nickname}
+                    span 작성자 #{comment.post.owner.nickname}
                     br
-                    span.comment-mixin__comment #{comment.text}
-                    br 
-                    span 조회수 #{comment.post.meta.views}
-                    span.date__created #{comment.post.creationDate}
+                    .comment-mixin__comment
+                        span : #{comment.text}

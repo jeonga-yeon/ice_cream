@@ -1,0 +1,27 @@
+.subscription-mixin {
+  .subscription-mixin__data {
+    padding: 0px 15px;
+    margin-bottom: 10px;
+    display: table;
+    .subscription-mixin__avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+    }
+    i,
+    img {
+      margin-right: 10px;
+    }
+    .subscription-mixin__meta {
+      display: inline;
+      display: table-cell;
+      vertical-align: middle;
+      span.subscription-mixin__nickname {
+        font-size: 18px;
+      }
+      span.subscription-mixin__about-user {
+        font-size: 16px;
+      }
+    }
+  }
+}

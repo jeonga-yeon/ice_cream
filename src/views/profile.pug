@@ -13,6 +13,8 @@ block content
         else 
             img(src="/" + profileUser.avatarUrl).avatar
         h3=profileUser.nickname
+        .profile__data--aboutuser
+            span=profileUser.aboutuser
         span.subscribers__number 구독자 #{profileUser.subscribers}
         if String(profileUser.id) === String(loggedInUser._id)
             a(href="/users/edit-profile", class="edit__profile")

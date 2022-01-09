@@ -8,8 +8,11 @@
       margin-top: 10px;
     }
     .comment-mixin__meta {
-      margin-top: 5px;
+      margin-top: 2px;
       font-size: 12px;
+      .comment-mixin__comment {
+        margin-top: 10px;
+      }
     }
   }
 }

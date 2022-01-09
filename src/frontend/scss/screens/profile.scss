@@ -12,8 +12,15 @@
     font-size: 18px;
     margin-bottom: 2px;
   }
+  .profile__data--aboutuser {
+    margin-bottom: 10px;
+    span {
+      font-size: 16px;
+    }
+  }
   .subscribers__number {
     margin-bottom: 20px;
+    font-size: 13px;
   }
   .edit__profile {
     color: black;
@@ -30,6 +37,15 @@
   display: none;
   color: gray;
   .withdrawal {
+    margin-top: 5px;
+    color: black;
+    background: rgba(0, 0, 0, 0.05);
+    border: none;
+  }
+}
+
+.subscription__wrap {
+  button {
     margin-top: 5px;
     color: black;
     background: rgba(0, 0, 0, 0.05);

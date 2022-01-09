@@ -14,8 +14,6 @@ const profileData = document.querySelector(".profile__data");
 function handleMyPosts() {
     myPosts.style.fontWeight = "bold";
     myComments.style.fontWeight = "normal";
-    myBookmark.style.fontWeight = "normal";
-    mySubscription.style.fontWeight = "normal";
 
     componentsPosts.style.zIndex = "2";
     componentsComments.style.zIndex = "1";
@@ -25,13 +23,14 @@ function handleMyPosts() {
     componentsComments.style.visibility = "hidden";
     componentsBookmarks.style.visibility = "hidden";
     componentsSubscriptions.style.visibility = "hidden";
+
+    myBookmark.style.fontWeight = "normal";
+    mySubscription.style.fontWeight = "normal";
 }
 
 function handleMyComments() {
     myPosts.style.fontWeight = "normal";
     myComments.style.fontWeight = "bold";
-    myBookmark.style.fontWeight = "normal";
-    mySubscription.style.fontWeight = "normal";
 
     componentsPosts.style.zIndex = "1";
     componentsComments.style.zIndex = "2";
@@ -41,6 +40,9 @@ function handleMyComments() {
     componentsComments.style.visibility = "visible";
     componentsBookmarks.style.visibility = "hidden";
     componentsSubscriptions.style.visibility = "hidden";
+
+    myBookmark.style.fontWeight = "normal";
+    mySubscription.style.fontWeight = "normal";
 }
 
 function handleMyBookmark() {
@@ -95,10 +97,35 @@ const handleWithdrawal = async () => {
     }
 }
 
+function bookmarkDate() {
+    const dateCreated = document.querySelectorAll(".bookmark__created");
+
+    const dates = [];
+    const formattedDates = [];
+
+    function dateFormat(x) {
+        const year = x.getFullYear();
+        const month = x.getMonth();
+        const date = x.getDate();
+        const yearMonthDate = `${year}.${month}.${date}`;
+
+        formattedDates.push(yearMonthDate);
+    }
+
+    for(let i = 0; i < dateCreated.length; i++) {
+        dates[i] = new Date(dateCreated[i].innerText);
+        dateFormat(dates[i]);
+        dateCreated[i].innerHTML = formattedDates[i];
+    }
+
+    myBookmark.removeEventListener("click", bookmarkDate);
+}
+
 myPosts.addEventListener("click", handleMyPosts);
 myComments.addEventListener("click", handleMyComments);
 if(myBookmark) {
     myBookmark.addEventListener("click", handleMyBookmark);
+    myBookmark.addEventListener("click", bookmarkDate);
 }
 if(mySubscription) {
     mySubscription.addEventListener("click", handleMySubscription);
