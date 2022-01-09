@@ -27,7 +27,7 @@
     }
     .homepost-mixin__content {
       height: 200px;
-      width: 160px;
+      max-width: 400px;
       display: table;
       p {
         display: table-cell;

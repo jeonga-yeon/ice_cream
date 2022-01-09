@@ -10,16 +10,31 @@
   }
   h3 {
     font-size: 18px;
+    margin-bottom: 2px;
+  }
+  .subscribers__number {
+    margin-bottom: 20px;
+  }
+  .edit__profile {
+    color: black;
   }
 }
 
 .settings {
   cursor: pointer;
+  margin-bottom: 5px;
 }
 
 .user__settings {
   width: auto;
   display: none;
+  color: gray;
+  .withdrawal {
+    margin-top: 5px;
+    color: black;
+    background: rgba(0, 0, 0, 0.05);
+    border: none;
+  }
 }
 
 .components {
@@ -35,6 +50,10 @@
     text-align: center;
     cursor: pointer;
     margin-right: 10px;
+    color: rgba(0, 0, 0, 0.6);
+  }
+  .my__posts {
+    font-weight: bold;
   }
 }
 
@@ -42,14 +61,14 @@
   position: relative;
   height: 500px;
   width: 100%;
+  a {
+    color: rgba(0, 0, 0, 0.8);
+  }
   .components__posts {
     position: absolute;
     height: 500px;
     width: 100%;
     z-index: 2;
-    a {
-      color: black;
-    }
     overflow: auto;
   }
   .components__comments {

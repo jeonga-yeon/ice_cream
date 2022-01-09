@@ -17,6 +17,10 @@ mixin homePost(post)
                 span 조회수 #{post.meta.views}
         if post.hashtags[0] !== ""
             .homepost-mixin__hashtags
+                - let count = 0
                 each hashtag in post.hashtags 
+                    if count === 3
+                        - break 
                     a(href=`/search?keyword=` + hashtag.replace('#', '%23'))
                         span.home__hashtag=hashtag.replace("#", "")
+                    - count++

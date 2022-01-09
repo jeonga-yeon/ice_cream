@@ -1,0 +1,15 @@
+.comment-mixin {
+  color: black;
+  .comment-mixin__data {
+    padding: 0px 15px;
+    .comment-mixin__title {
+      font-size: 18px;
+      display: block;
+      margin-top: 10px;
+    }
+    .comment-mixin__meta {
+      margin-top: 5px;
+      font-size: 12px;
+    }
+  }
+}

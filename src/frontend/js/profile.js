@@ -12,6 +12,11 @@ const withdrawalBtn = document.querySelector(".withdrawal");
 const profileData = document.querySelector(".profile__data");
 
 function handleMyPosts() {
+    myPosts.style.fontWeight = "bold";
+    myComments.style.fontWeight = "normal";
+    myBookmark.style.fontWeight = "normal";
+    mySubscription.style.fontWeight = "normal";
+
     componentsPosts.style.zIndex = "2";
     componentsComments.style.zIndex = "1";
     componentsBookmarks.style.zIndex = "0";
@@ -23,6 +28,11 @@ function handleMyPosts() {
 }
 
 function handleMyComments() {
+    myPosts.style.fontWeight = "normal";
+    myComments.style.fontWeight = "bold";
+    myBookmark.style.fontWeight = "normal";
+    mySubscription.style.fontWeight = "normal";
+
     componentsPosts.style.zIndex = "1";
     componentsComments.style.zIndex = "2";
     componentsBookmarks.style.zIndex = "0";
@@ -34,6 +44,11 @@ function handleMyComments() {
 }
 
 function handleMyBookmark() {
+    myPosts.style.fontWeight = "normal";
+    myComments.style.fontWeight = "normal";
+    myBookmark.style.fontWeight = "bold";
+    mySubscription.style.fontWeight = "normal";
+
     componentsBookmarks.style.zIndex = "3";
     componentsSubscriptions.style.zIndex = "-1";
     componentsBookmarks.style.visibility = "visible";
@@ -43,6 +58,11 @@ function handleMyBookmark() {
 }
 
 function handleMySubscription() {
+    myPosts.style.fontWeight = "normal";
+    myComments.style.fontWeight = "normal";
+    myBookmark.style.fontWeight = "normal";
+    mySubscription.style.fontWeight = "bold";
+
     componentsSubscriptions.style.zIndex = "4";
     componentsSubscriptions.style.visibility = "visible";
     componentsPosts.style.visibility = "hidden";
@@ -69,10 +89,10 @@ const handleWithdrawal = async () => {
         await fetch(`/api/users/${userId}/user-delete`, {
             method: "DELETE"
         });
+        window.location.replace("/");
     } else {
 
     }
-    window.location.replace("/");
 }
 
 myPosts.addEventListener("click", handleMyPosts);
