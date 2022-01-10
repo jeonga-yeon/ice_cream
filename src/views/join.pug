@@ -3,11 +3,11 @@ extends layout
 block content 
     form(method="POST")
         input(name="name", type="text", required, placeholder="이름")
-        input(name="nickname", type="text", required, placeholder="닉네임")
+        input(name="nickname", type="text", required, placeholder="닉네임", maxlength=16)
         input(name="email", type="email", required, placeholder="이메일")
         input(name="password", type="password", required, placeholder="비밀번호")
         input(name="password2", type="password", required, placeholder="비밀번호 확인")
-        input(name="aboutuser", type="text", required, placeholder="자기소개")
+        input(name="aboutuser", type="text", required, placeholder="자기소개", maxlength=30)
         input(type="submit", value="확인")
     if errorMessage 
         .error__message

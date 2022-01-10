@@ -18,7 +18,7 @@ block content
                     img(src=imageUrl, class="image")
                 each videoUrl in post.videosUrl  
                     video(src=videoUrl, class="video", controls) 
-    div 
+    div(style="white-space:pre;") 
         p=post.content 
         each hashtag in post.hashtags 
             a(href=`/search?keyword=` + hashtag.replace('#', '%23'))

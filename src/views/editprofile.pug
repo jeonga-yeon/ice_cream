@@ -13,8 +13,8 @@ block content
         label(for="avatar") 프로필 사진 변경
         input(type="file", id="avatar", name="avatar", accept="image/*")
         input(name="name", type="text", required, placeholder="이름", value=loggedInUser.name)
-        input(name="nickname", type="text", required, placeholder="닉네임", value=loggedInUser.nickname)
-        input(name="aboutuser", type="text", required, placeholder="자기소개", value=loggedInUser.aboutuser)
+        input(name="nickname", type="text", required, placeholder="닉네임", value=loggedInUser.nickname, maxlength=16)
+        input(name="aboutuser", type="text", required, placeholder="자기소개", value=loggedInUser.aboutuser, maxlength=30)
         input(type="submit", value="수정")
         .change-password
             a(href="change-password") 비밀번호 변경
