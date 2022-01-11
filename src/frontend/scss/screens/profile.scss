@@ -80,35 +80,42 @@
   a {
     color: rgba(0, 0, 0, 0.8);
   }
-  .components__posts {
-    position: absolute;
-    height: 500px;
-    width: 100%;
-    z-index: 2;
-    overflow: auto;
-  }
-  .components__comments {
-    position: absolute;
-    height: 500px;
-    width: 100%;
-    z-index: 1;
-    visibility: hidden;
-    overflow: auto;
-  }
-  .components__bookmarks {
-    position: absolute;
-    height: 500px;
-    width: 100%;
-    z-index: 0;
-    visibility: hidden;
-    overflow: auto;
-  }
+  .components__posts,
+  .components__comments,
+  .components__bookmarks,
   .components__subscriptions {
     position: absolute;
     height: 500px;
     width: 100%;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: white;
+      border-radius: 10px;
+      background-clip: padding-box;
+      border: 2px solid transparent;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: rgb(128, 128, 128, 0.5);
+      border-radius: 10px;
+      box-shadow: inset 0px 0px 5px white;
+    }
+  }
+  s .components__posts {
+    z-index: 2;
+  }
+  .components__comments {
+    z-index: 1;
+    visibility: hidden;
+  }
+  .components__bookmarks {
+    z-index: 0;
+    visibility: hidden;
+  }
+  .components__subscriptions {
     z-index: -1;
     visibility: hidden;
-    overflow: auto;
   }
 }

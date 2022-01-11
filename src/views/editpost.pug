@@ -8,5 +8,5 @@ block content
         input(type="file", accept="image/*", id="image", name="images", multiple)
         label(for="video") 영상
         input(type="file", accept="video/*", id="video", name="videos", multiple)
-        textarea(placeholder="내용 작성(최대 1000자)", required, name="content", maxlength=1000) #{post.content}
+        textarea(placeholder="내용 작성(최대 1000자)", class="edit-post__content", required, name="content", maxlength=1000) #{post.content}
         input(value="저장", type="submit")

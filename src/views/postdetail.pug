@@ -55,7 +55,7 @@ block content
     .post__comments 
         ul 
             each comment in post.comments.reverse()
-                li.post__comment(data-id=comment.id)
+                li.post__comment(data-id=comment.id, style="white-space:pre;")
                     if comment.owner.avatarUrl === undefined
                         a(href=`/users/${comment.owner._id}`)
                             i.fas.fa-user-circle.fa-5x
