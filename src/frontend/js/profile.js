@@ -105,7 +105,7 @@ function bookmarkDate() {
 
     function dateFormat(x) {
         const year = x.getFullYear();
-        const month = x.getMonth();
+        const month = x.getMonth() + 1;
         const date = x.getDate();
         const yearMonthDate = `${year}.${month}.${date}`;
 
@@ -121,8 +121,39 @@ function bookmarkDate() {
     myBookmark.removeEventListener("click", bookmarkDate);
 }
 
+function commentDate() {
+    const dateCreated = document.querySelectorAll(".comment__created");
+
+    const dates = [];
+    const formattedDates = [];
+
+    function dateFormat(x) {
+        const year = x.getFullYear();
+        const month = x.getMonth() + 1;
+        const date = x.getDate();
+        const yearMonthDate = `${year}.${month}.${date}`;
+
+        const hours = String(x.getHours()).padStart(2, "0");
+        const minutes = String(x.getMinutes()).padStart(2, "0");
+        const hoursMinutes = `${hours}:${minutes}`;
+
+        const completedDate = `${yearMonthDate} ${hoursMinutes}`;
+
+        formattedDates.push(completedDate);
+    }
+
+    for(let i = 0; i < dateCreated.length; i++) {
+        dates[i] = new Date(dateCreated[i].innerText);
+        dateFormat(dates[i]);
+        dateCreated[i].innerHTML = formattedDates[i];
+    }
+
+    myComments.removeEventListener("click", commentDate);
+}
+
 myPosts.addEventListener("click", handleMyPosts);
 myComments.addEventListener("click", handleMyComments);
+myComments.addEventListener("click", commentDate);
 if(myBookmark) {
     myBookmark.addEventListener("click", handleMyBookmark);
     myBookmark.addEventListener("click", bookmarkDate);

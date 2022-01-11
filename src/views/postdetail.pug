@@ -24,7 +24,7 @@ block content
             a(href=`/search?keyword=` + hashtag.replace('#', '%23'))
                 span.hashtag=hashtag
         br
-        small.date__created=post.creationDate
+        small.post__created=post.creationDate
     div 
         small
             a(href=`/users/${post.owner._id}`)

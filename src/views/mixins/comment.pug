@@ -7,3 +7,5 @@ mixin comment(comment)
                     br
                     .comment-mixin__comment
                         span : #{comment.text}
+                    .comment-mixin__comment--date 
+                        span.comment__created=comment.creationDate

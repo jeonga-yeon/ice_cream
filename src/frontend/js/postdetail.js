@@ -3,6 +3,7 @@ const slideWrap = document.querySelector(".slide_wrap");
 const slide = document.querySelector(".slide");
 const images = document.querySelectorAll(".image");
 const videos = document.querySelectorAll("video");
+const postCreated = document.querySelector(".post__created");
 let curPosition = 0;
 let position = 0;
 
@@ -121,3 +122,18 @@ window.onload = function () {
         }
     }
 }
+
+const newDate = new Date(postCreated.innerText);
+
+const year = newDate.getFullYear();
+const month = newDate.getMonth() + 1;
+const date = newDate.getDate();
+const yearMonthDate = `${year}.${month}.${date}`;
+
+const hours = String(newDate.getHours()).padStart(2, "0");
+const minutes = String(newDate.getMinutes()).padStart(2, "0");
+const hoursMinutes = `${hours}:${minutes}`;
+
+const completedDate = `${yearMonthDate} ${hoursMinutes}`;
+
+postCreated.innerHTML = completedDate;

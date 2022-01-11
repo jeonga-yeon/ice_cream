@@ -5,7 +5,7 @@ const formattedDates = [];
 
 function dateFormat(x) {
     const year = x.getFullYear();
-    const month = x.getMonth();
+    const month = x.getMonth() + 1;
     const date = x.getDate();
     const yearMonthDate = `${year}.${month}.${date}`;
 
