@@ -80,6 +80,7 @@ window.onload = function () {
     if(slide) {
         if(images || videos) {
             setTimeout(function() {
+                container.style.display = "block";
                 imgResizing();
                 if(images.length + videos.length !== 1) {
                     paintBtn();
@@ -99,6 +100,10 @@ window.onload = function () {
                         files.push(allVideos[i]);
                     }
                 }
+
+                if(files.length === 0) {
+                    container.style.display = "none";
+                }
         
                 if(files[0].className === "image") {
                     container.style.width = files[0].width + 'px';
@@ -107,8 +112,6 @@ window.onload = function () {
                     container.style.width = files[0].clientWidth + 'px';
                     slideWrap.style.width = files[0].clientWidth + 'px';
                 }
-        
-                container.style.visibility = "visible";
         
                 const prev = document.querySelector("i.prev");
                 const next = document.querySelector("i.next");

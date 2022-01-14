@@ -7,9 +7,9 @@ include mixins/subscription
 block content 
     div.profile__data(data-id=profileUser.id)
         if profileUser.avatarUrl === undefined
-            i.fas.fa-user-circle.fa-5x
+            i.fas.fa-user-circle.fa-7x.profile__data--avatar
         else if profileUser.avatarUrl === null
-            i.fas.fa-user-circle.fa-5x
+            i.fas.fa-user-circle.fa-7x.profile__data--avatar
         else 
             img(src="/" + profileUser.avatarUrl).avatar
         h3=profileUser.nickname

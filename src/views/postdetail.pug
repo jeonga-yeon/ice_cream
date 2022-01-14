@@ -20,12 +20,16 @@ block content
                     video(src=videoUrl, class="video", controls) 
     div(style="white-space:pre;") 
         p=post.content 
+        br
         each hashtag in post.hashtags 
             a(href=`/search?keyword=` + hashtag.replace('#', '%23'))
                 span.hashtag=hashtag
         br
+        br
         small.post__created=post.creationDate
-    div 
+        br
+        small 조회수 #{post.meta.views - 1} 
+    .post__owner
         small
             a(href=`/users/${post.owner._id}`)
                 if post.owner.avatarUrl === undefined
@@ -37,21 +41,21 @@ block content
                 span=post.owner.nickname
             span 님이 업로드한 포스트
             br
-            span 조회수 #{post.meta.views - 1} 
+    br
     if String(post.owner._id) === String(loggedInUser._id)
         a(href=`${post.id}/edit`) 포스트 수정
         br
         a(href=`${post.id}/delete`) 포스트 삭제
     if loggedIn
-        .post__comments 
+        .post__add-comments 
             form.post__comment-form#commentForm
-                textarea(class="loggedin__textarea", cols="30", rows="10", placeholder="댓글을 입력하세요...")
-                button 등록
+                textarea(class="loggedin__textarea", placeholder="댓글을 입력하세요...")
+                button 댓글 작성
     else 
         .post__add-comments 
             form.post__comment-form#commentForm
-                textarea(readonly, cols="30", rows="10", placeholder="로그인 해주세요...")
-                button(class="no__click") 등록
+                textarea(readonly, placeholder="로그인 해주세요...")
+                button(class="no__click") 댓글 작성
     .post__comments 
         ul 
             each comment in post.comments.reverse()
