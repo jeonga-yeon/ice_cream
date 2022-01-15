@@ -12,7 +12,13 @@ const addComment = (text, id, commentAvatar, commentOwner, commentNickname) => {
     a.href = `/users/${commentOwner}`;
     if(commentAvatar === undefined) {
         const i = document.createElement("i");
-        i.classList.add("fas", "fa-user-circle", "fa-5x");
+        i.classList.add("fas", "fa-user-circle", ".comment__icon");
+        i.style.color = "rgb(212, 211, 211)";
+        a.appendChild(i);
+    } else if(commentAvatar === null) {
+        const i = document.createElement("i");
+        i.classList.add("fas", "fa-user-circle", ".comment__icon");
+        i.style.color = "rgb(212, 211, 211)";
         a.appendChild(i);
     } else {
         const img = document.createElement("img");
