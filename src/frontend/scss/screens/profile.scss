@@ -9,6 +9,10 @@
   i.profile__data--avatar {
     margin-bottom: 10px;
   }
+  .avatar {
+    transform: translate(50, 50);
+    object-fit: cover;
+  }
   h3 {
     font-size: 18px;
     margin-bottom: 2px;

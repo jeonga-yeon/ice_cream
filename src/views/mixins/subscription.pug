@@ -1,12 +1,13 @@
 mixin subscription(subscription)
     a(href=`/users/${subscription.channel.id}`).subscription-mixin
         .subscription-mixin__data 
-            if subscription.channel.avatarUrl === undefined
-                i.fas.fa-user-circle.fa-5x
-            if subscription.channel.avatarUrl === null
-                i.fas.fa-user-circle.fa-5x
-            else 
-                img(src="/" + subscription.channel.avatarUrl).subscription-mixin__avatar
+            .subscription-mixin__image
+                if subscription.channel.avatarUrl === undefined
+                    i.fas.fa-user-circle.fa-5x
+                else if subscription.channel.avatarUrl === null
+                    i.fas.fa-user-circle.fa-5x
+                else 
+                    img(src="/" + subscription.channel.avatarUrl).subscription-mixin__avatar
             .subscription-mixin__meta 
                 span.subscription-mixin__nickname=subscription.channel.nickname 
                 br

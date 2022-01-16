@@ -19,6 +19,9 @@ block content
         input(type="submit", value="수정")
         .change-password
             a(href="change-password") 비밀번호 변경
+    if errorMessage 
+        .error__message
+            span=errorMessage
 
 block script 
     script(src="/assets/js/editprofile.js")

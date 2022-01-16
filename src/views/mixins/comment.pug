@@ -1,11 +1,14 @@
 mixin comment(comment)
     a(href=`/posts/${comment.post.id}`).comment-mixin
         .comment-mixin__data
+            .comment-mixin__comment--date 
+                span.comment__created=comment.creationDate
             span.comment-mixin__title=comment.post.title 
-                .comment-mixin__meta
-                    span 작성자 #{comment.post.owner.nickname}
-                    br
-                    .comment-mixin__comment
-                        span : #{comment.text}
-                    .comment-mixin__comment--date 
-                        span.comment__created=comment.creationDate
+            .comment-mixin__meta
+                span 작성자 #{comment.post.owner.nickname}
+                br
+                .comment-mixin__comment
+                    .comment-mixin__comment-colon
+                        span : 
+                    .comment-mixin__comment-text
+                        span #{comment.text}

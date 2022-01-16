@@ -1,21 +1,30 @@
 .subscription-mixin {
   .subscription-mixin__data {
     padding: 0px 15px;
-    margin-bottom: 10px;
     display: table;
-    .subscription-mixin__avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-    }
-    i,
-    img {
-      margin-right: 10px;
+    margin-top: 10px;
+    .subscription-mixin__image {
+      border-bottom: 1px solid rgb(230, 228, 228);
+      padding-bottom: 10px;
+      .subscription-mixin__avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        transform: translate(50, 50);
+        object-fit: cover;
+      }
+      i,
+      img {
+        margin-right: 10px;
+      }
     }
     .subscription-mixin__meta {
       display: inline;
       display: table-cell;
       vertical-align: middle;
+      width: 100%;
+      border-bottom: 1px solid rgb(230, 228, 228);
+      padding-bottom: 10px;
       span.subscription-mixin__nickname {
         font-size: 18px;
       }
