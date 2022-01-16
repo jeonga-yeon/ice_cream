@@ -1,0 +1,47 @@
+mixin postComment(comment)
+    li.post__comment(data-id=comment.id, style="white-space:pre;")
+        if comment.owner.avatarUrl === undefined
+            .post__comment--avatar
+                a(href=`/users/${comment.owner._id}`)
+                    i.fas.fa-user-circle.fa-5x.comment__icon
+            .post__comment--box 
+                .post__comment--box-top 
+                    .post__comment--nickname
+                        span=comment.owner.nickname 
+                    .post__comment--date 
+                        span=comment.creationDate 
+                .post__comment--content 
+                    span=comment.text
+                .post__comment--delete 
+                    if String(comment.owner._id) === String(loggedInUser._id)
+                        span(class="delete__comment") 삭제 
+        else if comment.owner.avatarUrl === null
+            .post__comment--avatar
+                a(href=`/users/${comment.owner._id}`)
+                    i.fas.fa-user-circle.fa-5x.comment__icon
+            .post__comment--box 
+                .post__comment--box-top 
+                    .post__comment--nickname
+                        span=comment.owner.nickname 
+                    .post__comment--date 
+                        span=comment.creationDate 
+                .post__comment--content 
+                    span=comment.text
+                .post__comment--delete 
+                    if String(comment.owner._id) === String(loggedInUser._id)
+                        span(class="delete__comment") 삭제 
+        else 
+            .post__comment--avatar
+                a(href=`/users/${comment.owner._id}`)
+                    img.comment__avatar(src="/" + comment.owner.avatarUrl)
+            .post__comment--box 
+                .post__comment--box-top 
+                    .post__comment--nickname
+                        span=comment.owner.nickname
+                    .post__comment--date 
+                        span=comment.creationDate 
+                .post__comment--content 
+                    span=comment.text
+                .post__comment--delete 
+                    if String(comment.owner._id) === String(loggedInUser._id)
+                        span(class="delete__comment") 삭제

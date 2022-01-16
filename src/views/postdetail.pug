@@ -1,5 +1,7 @@
 extends layout.pug
 
+include mixins/postComment
+
 block content 
     .bookmark__container
         if loggedIn
@@ -58,26 +60,10 @@ block content
                     textarea(readonly, placeholder="로그인 해주세요...")
                     button(class="no__click") 댓글 작성
         .post__comments 
+            span 댓글
             ul 
                 each comment in post.comments.reverse()
-                    li.post__comment(data-id=comment.id, style="white-space:pre;")
-                        if comment.owner.avatarUrl === undefined
-                            a(href=`/users/${comment.owner._id}`)
-                                i.fas.fa-user-circle.fa-5x.comment__icon
-                            span #{comment.owner.nickname} 
-                            span #{comment.text} 
-                        else if comment.owner.avatarUrl === null
-                            a(href=`/users/${comment.owner._id}`)
-                                i.fas.fa-user-circle.fa-5x.comment__icon
-                            span #{comment.owner.nickname} 
-                            span #{comment.text} 
-                        else 
-                            a(href=`/users/${comment.owner._id}`)
-                                img.comment__avatar(src="/" + comment.owner.avatarUrl)
-                            span #{comment.owner.nickname} 
-                            span #{comment.text} 
-                        if String(comment.owner._id) === String(loggedInUser._id)
-                            span(class="delete__comment") 삭제
+                    +postComment(comment)
 
 
 block script 

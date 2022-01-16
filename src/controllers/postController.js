@@ -212,7 +212,8 @@ export const createComment = async (req, res) => {
         newCommentId: comment._id,
         newCommentAvatar: thisComment.owner.avatarUrl,
         newCommentOwner: comment.owner._id,
-        newCommentNickname: thisComment.owner.nickname
+        newCommentNickname: thisComment.owner.nickname,
+        newCommentDate: thisComment.creationDate
     });
 };
 
