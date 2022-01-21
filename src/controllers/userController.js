@@ -89,12 +89,15 @@ export const postEditProfile = async (req, res) => {
         body: { name, nickname, aboutuser },
         file,
     } = req;
+    const user = await User.findById(_id);
     const nicknameExists = await User.exists({ nickname });
-    if(nicknameExists) {
+    if(user.nickname === nickname) {
+
+    } else if (nicknameExists) {
         return res.status(400).render("editprofile", { 
             pageTitle: "프로필 수정",
             errorMessage: "사용중인 닉네임입니다.", 
-        });
+        });   
     }
     const updatedUser = await User.findByIdAndUpdate(_id, {
             avatarUrl: file ? file.path : avatarUrl,
