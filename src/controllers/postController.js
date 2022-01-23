@@ -133,24 +133,45 @@ export const deletePost = async (req, res) => {
     const { id } = req.params;
     const { user: {_id} } = req.session;
     const post = await Post.findById(id);
+    
     if(!post) {
         return res.status(404).render("notfound", { pageTitle: "포스트를 찾을 수 없음" });
     }
+
     if(String(post.owner) !== String(_id)) {
         return res.status(403).redirect("/");
     }
-    for(let i = 0; i < post.comments.length; i++) {
-        await Comment.findByIdAndDelete(post.comments[i]);
+
+    const comments = await Comment.find({
+        post: id,
+    });
+    await Comment.deleteMany({
+        post: id,
+    });
+    for(let i = 0; i < comments.length; i++) {
+        const commentOwner = await User.findById(comments[i].owner);
+        commentOwner.comments.splice(commentOwner.comments.indexOf(comments[i]._id), 1);
+        commentOwner.save();
     }
+
     const bookmarks = await Bookmark.find({
         post: id,
     });
+    await Bookmark.deleteMany({
+        post: id,
+    });
     for(let i = 0; i < bookmarks.length; i++) {
-        await Bookmark.deleteMany({
-            post: id,
-        });
+        const bookmarkOwner = await User.findById(bookmarks[i].owner);
+        bookmarkOwner.bookmarks.splice(bookmarkOwner.bookmarks.indexOf(bookmarks[i]._id), 1);
+        bookmarkOwner.save();
     }
+
     await Post.findByIdAndDelete(id);
+
+    const user = await User.findById(_id);
+    user.posts.splice(user.posts.indexOf(id), 1);
+    user.save();
+
     return res.redirect("/");
 };
 
@@ -221,10 +242,19 @@ export const deleteComment = async (req, res) => {
     const { id } = req.params;
     const { user: {_id} } = req.session;
     const comment = await Comment.findById(id);
+    const commentOwner = await User.findById(comment.owner);
+    const commentedPost = await Post.findById(comment.post);
+
     if(String(comment.owner) !== String(_id)) {
         return res.sendStatus(404);
     }
+
     await Comment.findByIdAndDelete(id);
+    commentOwner.comments.splice(commentOwner.comments.indexOf(comment._id), 1);
+    commentOwner.save();
+    commentedPost.comments.splice(commentedPost.comments.indexOf(Comment._id), 1);
+    commentedPost.save();
+
     return res.sendStatus(201);
 };
 
@@ -263,12 +293,20 @@ export const deleteBookmark = async (req, res) => {
         post: id,
         owner: _id,
     });
+
+    const bookmarkOwner = await User.findById(bookmark[0].owner); 
+
     if(String(bookmark[0].owner) !== String(_id)) {
         return res.sendStatus(404);
     }
+
     await Bookmark.findOneAndDelete({
         post: id,
         owner: _id,
     }); 
+
+    bookmarkOwner.bookmarks.splice(bookmarkOwner.bookmarks.indexOf(bookmark[0]._id), 1);
+    bookmarkOwner.save();
+
     return res.sendStatus(201);
 }

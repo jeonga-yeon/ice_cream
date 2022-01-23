@@ -263,6 +263,7 @@ export const deleteSubscription = async (req, res) => {
         channel: id,
         owner: user._id,
     });
+    const subscriber = await User.findById(subscription[0].owner);
     
     if(String(subscription[0].owner) !== String(user._id)) {
         return res.sendStatus(404);
@@ -274,6 +275,9 @@ export const deleteSubscription = async (req, res) => {
 
     thisChannel.subscribers = thisChannel.subscribers - 1;
     thisChannel.save();
+
+    subscriber.subscriptions.splice(subscriber.subscriptions.indexOf(subscription[0]._id), 1);
+    subscriber.save();
 
     return res.sendStatus(201);
 }
