@@ -103,14 +103,14 @@ window.onload = function () {
 
                 if(files.length === 0) {
                     container.style.display = "none";
-                }
-        
-                if(files[0].className === "image") {
-                    container.style.width = files[0].width + 'px';
-                    slideWrap.style.width = files[0].width + 'px';
                 } else {
-                    container.style.width = files[0].clientWidth + 'px';
-                    slideWrap.style.width = files[0].clientWidth + 'px';
+                    if(files[0].className === "image") {
+                        container.style.width = files[0].width + 'px';
+                        slideWrap.style.width = files[0].width + 'px';
+                    } else {
+                        container.style.width = files[0].clientWidth + 'px';
+                        slideWrap.style.width = files[0].clientWidth + 'px';
+                    }
                 }
         
                 const prev = document.querySelector("i.prev");

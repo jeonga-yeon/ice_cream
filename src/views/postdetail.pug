@@ -52,15 +52,16 @@ block content
         if loggedIn
             .post__add-comments 
                 form.post__comment-form#commentForm
+                    span 댓글
                     textarea(class="loggedin__textarea", placeholder="댓글을 입력하세요...")
                     button 댓글 작성
         else 
             .post__add-comments 
                 form.post__comment-form#commentForm
+                    span 댓글
                     textarea(readonly, placeholder="로그인 해주세요...")
                     button(class="no__click") 댓글 작성
         .post__comments 
-            span 댓글
             ul 
                 each comment in post.comments.reverse()
                     +postComment(comment)

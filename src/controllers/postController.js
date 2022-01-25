@@ -186,7 +186,7 @@ export const search = async (req, res) => {
                 },
             }).sort({ creationDate: "desc" }).populate("owner");
         }
-        if(posts.length === 0) {
+        if((posts.length === 0) && (keyword !== "#")) {
             posts = await Post.find({
                 hashtags: {
                     $regex: keyword,
