@@ -1,5 +1,5 @@
 .homepost-mixin {
-  height: 310px;
+  height: 300px;
   border-radius: 10px;
   display: inline-block;
   margin-top: 30px;
@@ -9,13 +9,14 @@
   position: relative;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   overflow: hidden;
+  font-size: 0px;
   .homepost-mixin__data {
     padding: 0px 15px;
     color: grey;
     .homepost-mixin__title {
       font-size: 18px;
       display: block;
-      margin-top: 10px;
+      margin-top: 20px;
       padding-bottom: 5px;
     }
     .homepost-mixin__main-content {
@@ -36,11 +37,12 @@
           display: table-cell;
           vertical-align: middle;
           white-space: pre-line;
+          font-size: 16px;
         }
       }
     }
     .homepost-mixin__meta {
-      margin-top: 5px;
+      margin-top: 7px;
       font-size: 12px;
     }
   }
@@ -49,6 +51,7 @@
     line-height: 16px;
     letter-spacing: -0.12px;
     height: 22px;
+    margin-top: 7px;
     span.home__hashtag {
       display: inline-block;
       color: rgba(0, 0, 0, 0.5);

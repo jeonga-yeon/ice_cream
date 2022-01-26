@@ -9,8 +9,8 @@ mixin homePost(post)
                     video(preload="metadata" src=`${post.videosUrl[0]}#t=0.5`, class="homepost-mixin__video")
                 else 
                     .homepost-mixin__content
-                        if post.content.length > 160
-                            p #{post.content.slice(0,160)}...
+                        if post.content.length > 100
+                            p #{post.content.slice(0,100)}...
                         else 
                             p=post.content
             .homepost-mixin__meta 
