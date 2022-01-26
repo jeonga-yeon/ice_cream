@@ -16,22 +16,26 @@
       font-size: 18px;
       display: block;
       margin-top: 10px;
+      padding-bottom: 5px;
     }
-    .homepost-mixin__image {
-      height: 200px;
-      width: auto;
-    }
-    .homepost-mixin__video {
-      height: 200px;
-      width: auto;
-    }
-    .homepost-mixin__content {
-      height: 200px;
-      max-width: 400px;
-      display: table;
-      p {
-        display: table-cell;
-        vertical-align: middle;
+    .homepost-mixin__main-content {
+      text-align: center;
+      .homepost-mixin__image {
+        height: 200px;
+        width: auto;
+      }
+      .homepost-mixin__video {
+        height: 200px;
+        width: auto;
+      }
+      .homepost-mixin__content {
+        height: 200px;
+        max-width: 400px;
+        display: table;
+        p {
+          display: table-cell;
+          vertical-align: middle;
+        }
       }
     }
     .homepost-mixin__meta {
