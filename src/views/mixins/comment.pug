@@ -11,4 +11,7 @@ mixin comment(comment)
                     .comment-mixin__comment-colon
                         span : 
                     .comment-mixin__comment-text
-                        span #{comment.text}
+                        if comment.text.length > 70
+                            span #{comment.text.slice(0,70)}...
+                        else 
+                            span=comment.text

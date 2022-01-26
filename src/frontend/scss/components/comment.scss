@@ -23,6 +23,7 @@
         display: flex;
         .comment-mixin__comment-colon {
           float: left;
+          margin-right: 2px;
         }
         .comment-mixin__comment-text {
           float: right;

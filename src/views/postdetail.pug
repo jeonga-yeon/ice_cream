@@ -20,7 +20,7 @@ block content
                     img(src=imageUrl, class="image")
                 each videoUrl in post.videosUrl  
                     video(src=videoUrl, class="video", controls) 
-    div(style="white-space:pre;") 
+    div(style="white-space:pre-line;") 
         p=post.content 
         br
         each hashtag in post.hashtags 

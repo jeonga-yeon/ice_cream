@@ -56,7 +56,7 @@ block content
                 +post(post)
             else
                 span.empty__message 작성한 포스트가 없습니다.
-        .components__comments(style="white-space:pre;")
+        .components__comments(style="white-space:pre-line;")
             each comment in profileUser.comments 
                 +comment(comment)
             else 

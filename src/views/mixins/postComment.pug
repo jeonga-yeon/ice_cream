@@ -1,5 +1,5 @@
 mixin postComment(comment)
-    li.post__comment(data-id=comment.id, style="white-space:pre;")
+    li.post__comment(data-id=comment.id, style="white-space:pre-line;")
         if comment.owner.avatarUrl === undefined
             .post__comment--avatar
                 a(href=`/users/${comment.owner._id}`)

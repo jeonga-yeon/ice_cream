@@ -30,11 +30,12 @@
       }
       .homepost-mixin__content {
         height: 200px;
-        max-width: 400px;
+        max-width: 180px;
         display: table;
         p {
           display: table-cell;
           vertical-align: middle;
+          white-space: pre-line;
         }
       }
     }
