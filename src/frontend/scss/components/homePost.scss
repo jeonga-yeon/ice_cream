@@ -1,5 +1,5 @@
 .homepost-mixin {
-  height: 300px;
+  height: 320px;
   border-radius: 10px;
   display: inline-block;
   margin-top: 30px;
@@ -17,10 +17,11 @@
       font-size: 18px;
       display: block;
       margin-top: 20px;
-      padding-bottom: 5px;
+      padding-bottom: 16px;
     }
     .homepost-mixin__main-content {
       text-align: center;
+      margin-bottom: 18px;
       .homepost-mixin__image {
         height: 200px;
         width: auto;
