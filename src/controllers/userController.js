@@ -276,7 +276,7 @@ export const deleteSubscription = async (req, res) => {
     thisChannel.subscribers = thisChannel.subscribers - 1;
     thisChannel.save();
 
-    subscriber.subscriptions.splice(subscriber.subscriptions.indexOf(subscription[0]._id), 1);
+    subscriber.subscriptions.splice(subscriber.subscriptions.indexOf(id), 1);
     subscriber.save();
 
     return res.sendStatus(201);

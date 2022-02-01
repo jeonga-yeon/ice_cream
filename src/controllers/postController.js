@@ -250,9 +250,9 @@ export const deleteComment = async (req, res) => {
     }
 
     await Comment.findByIdAndDelete(id);
-    commentOwner.comments.splice(commentOwner.comments.indexOf(comment._id), 1);
+    commentOwner.comments.splice(commentOwner.comments.indexOf(id), 1);
     commentOwner.save();
-    commentedPost.comments.splice(commentedPost.comments.indexOf(Comment._id), 1);
+    commentedPost.comments.splice(commentedPost.comments.indexOf(id), 1);
     commentedPost.save();
 
     return res.sendStatus(201);
@@ -296,7 +296,7 @@ export const deleteBookmark = async (req, res) => {
 
     const bookmarkOwner = await User.findById(bookmark[0].owner); 
 
-    if(String(bookmark[0].owner) !== String(_id)) {
+    if(String(bookmark[0].owner._id) !== String(_id)) {
         return res.sendStatus(404);
     }
 
