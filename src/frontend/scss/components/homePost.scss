@@ -60,6 +60,15 @@
     letter-spacing: -0.12px;
     height: 22px;
     margin-top: 7px;
+    overflow: overlay;
+    white-space: nowrap;
+    overflow-y: hidden;
+    &::-webkit-scrollbar {
+      height: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgb(128, 128, 128, 0.08);
+    }
     span.home__hashtag {
       display: inline-block;
       color: rgba(0, 0, 0, 0.5);
