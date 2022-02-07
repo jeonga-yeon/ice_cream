@@ -15,7 +15,8 @@
     padding: 0px 15px;
     color: grey;
     .homepost-mixin__title {
-      font-size: 18px;
+      font-size: 16px;
+      font-weight: bold;
       display: block;
       margin-top: 20px;
       padding-bottom: 16px;
@@ -39,8 +40,10 @@
       }
       .homepost-mixin__content {
         height: 200px;
-        max-width: 180px;
+        width: 180px;
         display: table;
+        position: absolute;
+        bottom: 68px;
         p {
           display: table-cell;
           vertical-align: middle;
@@ -52,9 +55,14 @@
     .homepost-mixin__meta {
       margin-top: 7px;
       font-size: 12px;
+      position: absolute;
+      bottom: 36px;
     }
   }
   .homepost-mixin__hashtags {
+    position: absolute;
+    bottom: 8px;
+    width: 180px;
     font-size: 12px;
     line-height: 16px;
     letter-spacing: -0.12px;
@@ -67,7 +75,7 @@
       height: 4px;
     }
     &::-webkit-scrollbar-thumb {
-      background-color: rgb(128, 128, 128, 0.08);
+      background-color: rgb(128, 128, 128, 0.1);
     }
     span.home__hashtag {
       display: inline-block;

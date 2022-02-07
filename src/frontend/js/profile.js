@@ -24,8 +24,12 @@ function handleMyPosts() {
     componentsBookmarks.style.visibility = "hidden";
     componentsSubscriptions.style.visibility = "hidden";
 
-    myBookmark.style.fontWeight = "normal";
-    mySubscription.style.fontWeight = "normal";
+    if(myBookmark) {
+        myBookmark.style.fontWeight = "normal";
+    }
+    if(mySubscription) {
+        mySubscription.style.fontWeight = "normal";
+    }
 }
 
 function handleMyComments() {
@@ -41,8 +45,12 @@ function handleMyComments() {
     componentsBookmarks.style.visibility = "hidden";
     componentsSubscriptions.style.visibility = "hidden";
 
-    myBookmark.style.fontWeight = "normal";
-    mySubscription.style.fontWeight = "normal";
+    if(myBookmark) {
+        myBookmark.style.fontWeight = "normal";
+    }
+    if(mySubscription) {
+        mySubscription.style.fontWeight = "normal";
+    }
 }
 
 function handleMyBookmark() {

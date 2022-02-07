@@ -54,7 +54,7 @@ block content
             .post__add-comments 
                 form.post__comment-form#commentForm
                     span 댓글
-                    textarea(class="loggedin__textarea", placeholder="댓글을 입력하세요...")
+                    textarea(class="loggedin__textarea", placeholder="댓글을 입력하세요...", maxlength=300)
                     button 댓글 작성
         else 
             .post__add-comments 

@@ -1,14 +1,12 @@
 textarea.loggedin__textarea,
 #content,
 .edit-post__content {
+  overflow: overlay;
   &::-webkit-scrollbar {
-    width: 8px;
+    width: 7px;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: rgb(200, 201, 201);
-    border-radius: 10px;
-  }
-  &::-webkit-scrollbar-track {
-    background-color: transparent;
+    background-color: rgba(238, 237, 237);
+    border-radius: 3px;
   }
 }
