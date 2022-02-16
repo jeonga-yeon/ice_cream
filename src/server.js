@@ -35,5 +35,8 @@ app.use("/", globalRouter);
 app.use("/posts", postRouter);
 app.use("/users", userRouter);
 app.use("/api", apiRouter);
+app.use((err, req, res, next) => {
+    res.json({ok: false, data: err.message})
+})
 
 export default app;

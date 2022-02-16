@@ -27,5 +27,5 @@ export const avatarUpload = multer({ dest: "uploads/avatars", limits: {
 } });
 
 export const postUploadMiddleware = multer({ dest: "uploads/contents", limits: {
-    fileSize: 10000000000,
+    fileSize: 50000000,
 } });
