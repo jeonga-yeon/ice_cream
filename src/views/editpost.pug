@@ -2,7 +2,7 @@ extends layout.pug
 
 block content 
     form(method="POST", enctype="multipart/form-data")
-        input(type="text", placeholder="제목", required, name="title", maxlength=30, value=post.title)
+        input(type="text", placeholder="제목", required, name="title", maxlength=25, value=post.title)
         input(type="text", placeholder="해시태그 ex) #해시태그 #hashtag", name="hashtags", value=post.hashtags.join().replace(/\,/gi, " "))
         label(for="image", class="upload__files") 사진(최대 8장)
         input(type="file", accept="image/*", id="image", name="images", multiple)
