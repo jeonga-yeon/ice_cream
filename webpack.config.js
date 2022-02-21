@@ -13,8 +13,6 @@ module.exports = {
         editprofile: "./src/frontend/js/editprofile.js",
         date: "./src/frontend/js/date.js"
     },
-    mode: "development",
-    watch: true,
     plugins: [new MiniCssExtractPlugin({
         filename: "css/styles.css",
     })],
