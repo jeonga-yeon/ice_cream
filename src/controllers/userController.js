@@ -5,7 +5,7 @@ import Post from "../models/Post";
 import Comment from "../models/Comment";
 import Bookmark from "../models/Bookmark";
 
-export const getJoin = (req, res) => res.render("Join", { pageTitle: "회원가입" });
+export const getJoin = (req, res) => res.render("join", { pageTitle: "회원가입" });
 export const postJoin = async (req, res) => {
     const { name, nickname, email, password, password2, aboutuser } = req.body;
     const pageTitle = "회원가입";
