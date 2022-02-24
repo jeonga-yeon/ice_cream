@@ -67,12 +67,12 @@ export const postEditPost = async (req, res) => {
     let imagesUrl = [];
     if(videoFiles) {
         for(let i = 0; i < videoFiles.length; i++) {
-            videosUrl.push(`/${videoFiles[i].path}`)
+            videosUrl.push(videoFiles[i].location)
         }
     }
     if(imageFiles) {
         for(let i = 0; i < imageFiles.length; i++) {
-            imagesUrl.push(`/${imageFiles[i].path}`)
+            imagesUrl.push(imageFiles[i].location)
         }
     }
     await Post.findByIdAndUpdate(id, {
@@ -100,12 +100,12 @@ export const postUpload = async (req, res) => {
     let imagesUrl = [];
     if(videoFiles) {
         for(let i = 0; i < videoFiles.length; i++) {
-            videosUrl.push(`/${videoFiles[i].path}`)
+            videosUrl.push(videoFiles[i].location)
         }
     }
     if(imageFiles) {
         for(let i = 0; i < imageFiles.length; i++) {
-            imagesUrl.push(`/${imageFiles[i].path}`)
+            imagesUrl.push(imageFiles[i].location)
         }
     }
     try {

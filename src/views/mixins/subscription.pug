@@ -7,7 +7,7 @@ mixin subscription(subscription)
                 else if subscription.channel.avatarUrl === null
                     i.fas.fa-user-circle.fa-5x
                 else 
-                    img(src="/" + subscription.channel.avatarUrl).subscription-mixin__avatar
+                    img(src=subscription.channel.avatarUrl).subscription-mixin__avatar
             .subscription-mixin__meta 
                 span.subscription-mixin__nickname=subscription.channel.nickname 
                 br

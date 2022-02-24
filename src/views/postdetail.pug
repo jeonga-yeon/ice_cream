@@ -40,7 +40,7 @@ block content
                 else if post.owner.avatarUrl === null
                     i.fas.fa-user-circle
                 else
-                    img.poster__avatar(src="/" + post.owner.avatarUrl)
+                    img.poster__avatar(src=post.owner.avatarUrl)
                 span=post.owner.nickname
             span 님이 업로드한 포스트
             br

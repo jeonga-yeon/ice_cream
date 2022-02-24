@@ -11,7 +11,7 @@ block content
         else if profileUser.avatarUrl === null
             i.fas.fa-user-circle.fa-7x.profile__data--avatar
         else 
-            img(src="/" + profileUser.avatarUrl).avatar
+            img(src=profileUser.avatarUrl).avatar
         h3=profileUser.nickname
         .profile__data--aboutuser
             span=profileUser.aboutuser
