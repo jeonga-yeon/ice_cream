@@ -81,6 +81,8 @@ export const getEditProfile = (req, res) => {
     return res.render("editprofile", { pageTitle: "프로필 수정" });
 };
 
+const isHeroku = process.env.NODE_ENV === "production";
+
 export const postEditProfile = async (req, res) => {
     const { 
         session: {
@@ -100,7 +102,7 @@ export const postEditProfile = async (req, res) => {
         });   
     }
     const updatedUser = await User.findByIdAndUpdate(_id, {
-            avatarUrl: file ? file.location : avatarUrl,
+            avatarUrl: file ? (isHeroku ? file.location : file.path) : avatarUrl,
             name,
             nickname,
             aboutuser,

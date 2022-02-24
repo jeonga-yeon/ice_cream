@@ -54,6 +54,7 @@ export const postEditPost = async (req, res) => {
     const { user: {_id} } = req.session;
     const { id } = req.params;
     const { title, content, hashtags } = req.body;
+    const isHeroku = process.env.NODE_ENV === "production";
     const post = await Post.findById(id);
     if(!post) {
         return res.status(404).render("notfound", { pageTitle: "포스트를 찾을 수 없음" });
@@ -67,12 +68,12 @@ export const postEditPost = async (req, res) => {
     let imagesUrl = [];
     if(videoFiles) {
         for(let i = 0; i < videoFiles.length; i++) {
-            videosUrl.push(videoFiles[i].location)
+            isHeroku ? videosUrl.push(videoFiles[i].location) : videosUrl.push(videoFiles[i].path)
         }
     }
     if(imageFiles) {
         for(let i = 0; i < imageFiles.length; i++) {
-            imagesUrl.push(imageFiles[i].location)
+            isHeroku ? imagesUrl.push(imageFiles[i].location) : imagesUrl.push(imageFiles[i].path)
         }
     }
     await Post.findByIdAndUpdate(id, {
@@ -96,16 +97,17 @@ export const postUpload = async (req, res) => {
     const videoFiles = req.files["videos"];
     const imageFiles = req.files["images"];
     const { title, content, hashtags } = req.body;
+    const isHeroku = process.env.NODE_ENV === "production";
     let videosUrl = [];
     let imagesUrl = [];
     if(videoFiles) {
         for(let i = 0; i < videoFiles.length; i++) {
-            videosUrl.push(videoFiles[i].location)
+            isHeroku ? videosUrl.push(videoFiles[i].location) : videosUrl.push(videoFiles[i].path)
         }
     }
     if(imageFiles) {
         for(let i = 0; i < imageFiles.length; i++) {
-            imagesUrl.push(imageFiles[i].location)
+            isHeroku ? imagesUrl.push(imageFiles[i].location) : imagesUrl.push(imageFiles[i].path)
         }
     }
     try {
