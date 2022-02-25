@@ -153,7 +153,7 @@ export const deletePost = async (req, res) => {
     for(let i = 0; i < comments.length; i++) {
         const commentOwner = await User.findById(comments[i].owner);
         commentOwner.comments.splice(commentOwner.comments.indexOf(comments[i]._id), 1);
-        commentOwner.save();
+        commentOwner.update();
     }
 
     const bookmarks = await Bookmark.find({
@@ -165,14 +165,14 @@ export const deletePost = async (req, res) => {
     for(let i = 0; i < bookmarks.length; i++) {
         const bookmarkOwner = await User.findById(bookmarks[i].owner);
         bookmarkOwner.bookmarks.splice(bookmarkOwner.bookmarks.indexOf(bookmarks[i]._id), 1);
-        bookmarkOwner.save();
+        bookmarkOwner.update();
     }
 
     await Post.findByIdAndDelete(id);
 
     const user = await User.findById(_id);
     user.posts.splice(user.posts.indexOf(id), 1);
-    user.save();
+    user.update();
 
     return res.redirect("/");
 };
