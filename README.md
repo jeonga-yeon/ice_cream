@@ -115,11 +115,11 @@ Heroku에 서버를 배포하고 MongoDB Atlas로 MongoDB를 사용. 그리고 �
   <br />
 - 문제 해결  
   <br />
-  1. 업로드한 동영상이 잘려서 보이는 문제 해결  
+  - 업로드한 동영상이 잘려서 보이는 문제 해결  
      페이지 로드 후 기능을 실행하는 window.onload를 사용해도 문제가 해결되지 않아 setTimeout()으로 시간을 지연시켰더니 문제가 해결되었다.
      <br />
   
-  2. 프로필 수정 시 닉네임을 바꾸지 않으면 이미 사용 중인 닉네임이어서 생기는 문제 해결  
+  - 프로필 수정 시 닉네임을 바꾸지 않으면 이미 사용 중인 닉네임이어서 생기는 문제 해결  
       ```
       const nicknameExists = await User.exists({ nickname });
       if(nicknameExists) {
@@ -143,7 +143,7 @@ Heroku에 서버를 배포하고 MongoDB Atlas로 MongoDB를 사용. 그리고 �
       ```
     <br />
 
-  3. 포스트 삭제 시 댓글과 북마크 정보 모두 사라지도록 함
+  - 포스트 삭제 시 댓글과 북마크 정보 모두 사라지도록 함
       ```
       const comments = await Comment.find({
         post: id,
@@ -171,7 +171,7 @@ Heroku에 서버를 배포하고 MongoDB Atlas로 MongoDB를 사용. 그리고 �
       ```
     <br />
 
-  4. 구독 취소 시 구독된 사용자의 아이디와 현재 로그인 되어있는 사용자의 아이디(구독한 사용자의 아이디)로 구독 정보를 찾아 삭제한다.
+  - 구독 취소 시 구독된 사용자의 아이디와 현재 로그인 되어있는 사용자의 아이디(구독한 사용자의 아이디)로 구독 정보를 찾아 삭제한다.
       ```
       await Subscription.findOneAndDelete({
         channel: id,
@@ -180,7 +180,7 @@ Heroku에 서버를 배포하고 MongoDB Atlas로 MongoDB를 사용. 그리고 �
       ```
     <br />
 
-  5. 회원 탈퇴 시 경고 창이 뜨고 확인을 누르면 삭제 후 메인 화면으로 돌아가고 취소를 누르면 회원 탈퇴가 취소된다.
+  - 회원 탈퇴 시 경고 창이 뜨고 확인을 누르면 삭제 후 메인 화면으로 돌아가고 취소를 누르면 회원 탈퇴가 취소된다.
       ```
       const answer = confirm("정말 탈퇴하시겠습니까?\n회원님의 모든 정보가 삭제됩니다.");
       if(answer) {
