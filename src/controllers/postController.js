@@ -68,12 +68,12 @@ export const postEditPost = async (req, res) => {
     let imagesUrl = [];
     if(videoFiles) {
         for(let i = 0; i < videoFiles.length; i++) {
-            isHeroku ? videosUrl.push(videoFiles[i].location) : videosUrl.push(videoFiles[i].path)
+            isHeroku ? videosUrl.push(videoFiles[i].location) : videosUrl.push("/"+videoFiles[i].path)
         }
     }
     if(imageFiles) {
         for(let i = 0; i < imageFiles.length; i++) {
-            isHeroku ? imagesUrl.push(imageFiles[i].location) : imagesUrl.push(imageFiles[i].path)
+            isHeroku ? imagesUrl.push(imageFiles[i].location) : imagesUrl.push("/"+imageFiles[i].path)
         }
     }
     await Post.findByIdAndUpdate(id, {
@@ -102,12 +102,12 @@ export const postUpload = async (req, res) => {
     let imagesUrl = [];
     if(videoFiles) {
         for(let i = 0; i < videoFiles.length; i++) {
-            isHeroku ? videosUrl.push(videoFiles[i].location) : videosUrl.push(videoFiles[i].path)
+            isHeroku ? videosUrl.push(videoFiles[i].location) : videosUrl.push("/"+videoFiles[i].path)
         }
     }
     if(imageFiles) {
         for(let i = 0; i < imageFiles.length; i++) {
-            isHeroku ? imagesUrl.push(imageFiles[i].location) : imagesUrl.push(imageFiles[i].path)
+            isHeroku ? imagesUrl.push(imageFiles[i].location) : imagesUrl.push("/"+imageFiles[i].path)
         }
     }
     try {

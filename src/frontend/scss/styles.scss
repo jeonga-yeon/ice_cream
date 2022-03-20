@@ -1,5 +1,3 @@
-// config
-@import "./config/variables.scss";
 @import "./config/reset.scss";
 
 // components
@@ -19,7 +17,6 @@
 @import "./screens/profile.scss";
 @import "./screens/search.scss";
 
-// defaults
 html {
   position: relative;
   min-height: 100%;
