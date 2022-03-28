@@ -61,7 +61,7 @@ const addComment = (text, id, commentAvatar, commentOwner, commentNickname, comm
     } else {
         const img = document.createElement("img");
         img.className = "comment__avatar";
-        img.src = `/${commentAvatar}`;
+        img.src = `${commentAvatar}`;
         a.appendChild(img);
     }
     const postCommentNickname = document.createElement("div");
