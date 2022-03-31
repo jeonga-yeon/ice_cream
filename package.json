@@ -1,7 +1,7 @@
 {
   "name": "ice_cream",
   "version": "1.0.0",
-  "description": "Everyones's Blog",
+  "description": "일상을 공유하는 웹 사이트",
   "scripts": {
     "start": "node build/init.js",
     "build": "npm run build:server && npm run build:assets",
