@@ -1,5 +1,5 @@
 mixin postComment(comment)
-    li.post__comment(data-id=comment.id, style="white-space:pre-line;")
+    li.post__comment(data-id=comment.id)
         if comment.owner.avatarUrl === undefined
             .post__comment--avatar
                 a(href=`/users/${comment.owner._id}`)
@@ -10,7 +10,7 @@ mixin postComment(comment)
                         span=comment.owner.nickname 
                     .post__comment--date 
                         span=comment.creationDate 
-                .post__comment--content 
+                .post__comment--content(style="white-space:pre-wrap;") 
                     span=comment.text
                 .post__comment--delete 
                     if String(comment.owner._id) === String(loggedInUser._id)
@@ -25,7 +25,7 @@ mixin postComment(comment)
                         span=comment.owner.nickname 
                     .post__comment--date 
                         span=comment.creationDate 
-                .post__comment--content 
+                .post__comment--content(style="white-space:pre-wrap;") 
                     span=comment.text
                 .post__comment--delete 
                     if String(comment.owner._id) === String(loggedInUser._id)
@@ -40,7 +40,7 @@ mixin postComment(comment)
                         span=comment.owner.nickname
                     .post__comment--date 
                         span=comment.creationDate 
-                .post__comment--content 
+                .post__comment--content(style="white-space:pre-wrap;") 
                     span=comment.text
                 .post__comment--delete 
                     if String(comment.owner._id) === String(loggedInUser._id)

@@ -20,7 +20,7 @@ block content
                     img(src=imageUrl, class="image")
                 each videoUrl in post.videosUrl  
                     video(src=videoUrl, class="video", controls) 
-    div(style="white-space:pre-line;") 
+    div(style="white-space:pre-wrap;") 
         p=post.content 
         br
         div(style="white-space:pre-line; width: 500px;") 

@@ -92,6 +92,7 @@ const addComment = (text, id, commentAvatar, commentOwner, commentNickname, comm
 
     const postCommentContent = document.createElement("div");
     postCommentContent.className = "post__comment--content";
+    postCommentContent.style = "white-space:pre-wrap";
     const contentSpan = document.createElement("span");
     contentSpan.innerText = text;
     postCommentContent.appendChild(contentSpan);
