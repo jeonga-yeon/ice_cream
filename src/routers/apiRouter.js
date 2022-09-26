@@ -1,6 +1,16 @@
 import express from "express";
-import { bookmark, createComment, deleteBookmark, deleteComment } from "../controllers/postController";
-import { deleteProfileImg, deleteSubscription, deleteUser, subscription } from "../controllers/userController";
+import {
+  bookmark,
+  createComment,
+  deleteBookmark,
+  deleteComment,
+} from "../controllers/postController";
+import {
+  deleteProfileImg,
+  deleteSubscription,
+  deleteUser,
+  subscription,
+} from "../controllers/userController";
 
 const apiRouter = express.Router();
 

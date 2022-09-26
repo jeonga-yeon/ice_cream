@@ -17,14 +17,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(
-    session({
-        secret: process.env.COOKIE_SECRET,
-        resave: false,
-        saveUninitialized: false,
-        store: MongoStore.create({
-            mongoUrl: process.env.MONGO_URL
-        }),
-    })
+  session({
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_URL,
+    }),
+  })
 );
 
 app.use(localsMiddleware);
@@ -36,7 +36,7 @@ app.use("/posts", postRouter);
 app.use("/users", userRouter);
 app.use("/api", apiRouter);
 app.use((err, req, res, next) => {
-    res.json({ok: false, data: err.message})
-})
+  res.json({ ok: false, data: err.message });
+});
 
 export default app;
